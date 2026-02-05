@@ -1,0 +1,26 @@
+/* ================================================================
+   SAUSSY BURBANK DESIGN SYSTEM — Combined Import
+   ================================================================
+   Import this single file to load the entire design system.
+   Or import individual files as needed.
+   ================================================================ */
+
+/* Tokens */
+@import 'tokens/colors.css';
+@import 'tokens/typography.css';
+@import 'tokens/spacing.css';
+
+/* Atoms */
+@import 'atoms/links.css';
+@import 'atoms/buttons.css';
+@import 'atoms/forms.css';
+@import 'atoms/badges.css';
+@import 'atoms/lists.css';
+@import 'atoms/blockquote.css';
+@import 'atoms/divider.css';
+@import 'atoms/icons.css';
+
+/* Molecules */
+@import 'molecules/alerts.css';
+@import 'molecules/cards.css';
+@import 'molecules/tables.css';

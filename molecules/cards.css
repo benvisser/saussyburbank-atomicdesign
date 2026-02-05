@@ -1,0 +1,19 @@
+/* ================================================================
+   CARDS — Molecules
+   ================================================================ */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-body {
+  padding: var(--space-6);
+}

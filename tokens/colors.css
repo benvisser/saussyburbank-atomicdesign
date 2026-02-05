@@ -1,0 +1,48 @@
+/* ================================================================
+   SAUSSY BURBANK DESIGN SYSTEM — COLOR TOKENS
+   ================================================================
+   Single source of truth for all colors.
+   These map to tailwind.config.js → theme.extend.colors
+   ================================================================ */
+
+:root {
+  /* --- Primary Brand --- */
+  --color-primary:          #171796;
+  --color-primary-hover:    #0D0D61;
+  --color-primary-light:    #EFEFEF;
+  --color-secondary:        #EFEFEF;
+  --color-secondary-hover:  #E3E3E3;
+
+  /* --- Neutrals --- */
+  --color-dark:             #35373C;
+  --color-body:             #6B7280;
+  --color-muted:            #9CA3AF;
+  --color-border:           #E5E7EB;
+  --color-light-bg:         #FAFAFA;
+  --color-white:            #FFFFFF;
+
+  /* --- Semantic --- */
+  --color-success:          #10B981;
+  --color-success-light:    #34C092;
+  --color-warning:          #D97706;
+  --color-warning-light:    #F59E0B;
+  --color-error:            #EF4444;
+  --color-error-light:      #FEF2F2;
+  --color-info:             #2563EB;
+  --color-info-light:       #EFF6FF;
+
+  /* --- Surfaces --- */
+  --color-surface:          #FFFFFF;
+  --color-surface-alt:      #FAFAFA;
+  --color-surface-dark:     #35373C;
+  --color-surface-dark-text:#F9FAFB;
+  --color-overlay:          rgba(0, 0, 0, 0.5);
+
+  /* --- Interactive --- */
+  --color-focus-ring:       #171796;
+  --color-disabled:         #E5E7EB;
+  --color-disabled-text:    #9CA3AF;
+  --color-link:             #171796;
+  --color-link-hover:       #0D0D61;
+  --color-link-visited:     #5B4A6B;
+}

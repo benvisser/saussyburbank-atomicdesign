@@ -1,0 +1,96 @@
+/* ================================================================
+   BUTTONS — Atoms
+   Variants: primary, secondary, outline, text
+   Sizes: sm, md, lg
+   States: hover, focus-visible, disabled
+   ================================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* --- Sizes --- */
+.btn-sm { font-size: 13px; padding: var(--space-2) var(--space-5); }
+.btn-md { font-size: 14px; padding: var(--space-3) var(--space-6); }
+.btn-lg { font-size: 16px; padding: var(--space-4) var(--space-8); }
+
+/* --- Primary (solid) --- */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-white);
+}
+
+/* --- Secondary (solid) --- */
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-dark);
+  border-color: var(--color-secondary);
+}
+.btn-secondary:hover {
+  background: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  color: var(--color-dark);
+}
+
+/* --- Outline / Ghost --- */
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* --- Text / Link --- */
+.btn-text {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn-text:hover {
+  color: var(--color-primary-hover);
+}
+
+/* --- Disabled (all variants) --- */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background: var(--color-disabled);
+  color: var(--color-disabled-text);
+  border-color: var(--color-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* --- Icon inside button --- */
+.btn .material-symbols-outlined {
+  font-size: 18px;
+}

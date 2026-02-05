@@ -1,0 +1,16 @@
+/* ================================================================
+   LISTS — Atoms
+   ================================================================ */
+
+ul, ol {
+  padding-left: var(--space-6);
+  color: var(--color-body);
+}
+
+li {
+  margin-bottom: var(--space-2);
+}
+
+ul li::marker {
+  color: var(--color-primary);
+}
