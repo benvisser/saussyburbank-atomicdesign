@@ -49,11 +49,15 @@ Copy the values from `tailwind.config.js` into your WordPress theme's Tailwind c
 
 ## Fonts
 
-- **Larken** (display/headings) — commercial font, requires license
-- **Gotham** (body/UI) — commercial font, requires license
+- **Larken** (display/headings) — loaded via Adobe Fonts
+- **Proxima Nova** (body/UI) — loaded via Adobe Fonts
 - **Material Symbols Outlined** (icons) — Google Fonts, free
 
-Update the font `@import` or `<link>` tags in your theme to load Larken and Gotham via your preferred method (Adobe Fonts, self-hosted, etc.).
+Fonts are loaded automatically via the Adobe Fonts kit in `tokens/typography.css`. You can also add the `<link>` tag directly in your theme's `<head>`:
+
+```html
+<link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
+```
 
 ## Accessibility
 

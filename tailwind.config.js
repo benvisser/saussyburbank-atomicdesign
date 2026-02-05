@@ -21,8 +21,8 @@ module.exports = {
         link:      { DEFAULT: '#171796', hover: '#0D0D61', visited: '#5B4A6B' },
       },
       fontFamily: {
-        display: ['Larken', 'Georgia', 'Times New Roman', 'serif'],
-        body:    ['Gotham', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        display: ['larken', 'Georgia', 'Times New Roman', 'serif'],
+        body:    ['proxima-nova', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       fontSize: {
         'h1': ['80px', { lineHeight: '102%', fontWeight: '100' }],

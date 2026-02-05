@@ -1,2 +1,357 @@
-<!-- Copy the reference.html from the design system output -->
-<!-- Replace this placeholder with the full HTML file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saussy Burbank — Design System Reference</title>
+
+  <!-- Adobe Fonts (Larken + Gotham) -->
+  <link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
+
+  <!-- Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="design-system.css">
+
+  <style>
+    .ref-section {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-6);
+    }
+    .ref-section + .ref-section {
+      border-top: 1px solid var(--color-border);
+    }
+    .ref-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-muted);
+      margin-bottom: var(--space-4);
+    }
+    .ref-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      margin-bottom: var(--space-6);
+    }
+    .swatch {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+    .swatch-label {
+      font-size: 11px;
+      color: var(--color-muted);
+      margin-top: var(--space-1);
+      text-align: center;
+    }
+    .swatch-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body style="background: var(--color-surface-alt);">
+
+  <!-- ============================================================ -->
+  <!-- COLORS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Color Tokens</h2>
+
+    <p class="ref-label">Primary Brand</p>
+    <div class="swatch-group ref-row">
+      <div class="swatch-item"><div class="swatch" style="background:#171796;"></div><div class="swatch-label">Primary<br>#171796</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#0D0D61;"></div><div class="swatch-label">Primary Hover<br>#0D0D61</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#EFEFEF;"></div><div class="swatch-label">Primary Light<br>#EFEFEF</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#EFEFEF;"></div><div class="swatch-label">Secondary<br>#EFEFEF</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#E3E3E3;"></div><div class="swatch-label">Secondary Hover<br>#E3E3E3</div></div>
+    </div>
+
+    <p class="ref-label">Neutrals</p>
+    <div class="swatch-group ref-row">
+      <div class="swatch-item"><div class="swatch" style="background:#35373C;"></div><div class="swatch-label">Dark<br>#35373C</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#6B7280;"></div><div class="swatch-label">Body<br>#6B7280</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#9CA3AF;"></div><div class="swatch-label">Muted<br>#9CA3AF</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#E5E7EB;"></div><div class="swatch-label">Border<br>#E5E7EB</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#FAFAFA;"></div><div class="swatch-label">Light BG<br>#FAFAFA</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#FFFFFF;"></div><div class="swatch-label">White<br>#FFFFFF</div></div>
+    </div>
+
+    <p class="ref-label">Semantic</p>
+    <div class="swatch-group ref-row">
+      <div class="swatch-item"><div class="swatch" style="background:#10B981;"></div><div class="swatch-label">Success<br>#10B981</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#D97706;"></div><div class="swatch-label">Warning<br>#D97706</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#EF4444;"></div><div class="swatch-label">Error<br>#EF4444</div></div>
+      <div class="swatch-item"><div class="swatch" style="background:#2563EB;"></div><div class="swatch-label">Info<br>#2563EB</div></div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TYPOGRAPHY -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Typography</h2>
+
+    <p class="ref-label">Headings (Larken)</p>
+    <h1>H1 — Heading One</h1>
+    <h2>H2 — Heading Two</h2>
+    <h3>H3 — Heading Three</h3>
+    <h4>H4 — Heading Four (Uppercase)</h4>
+
+    <hr>
+
+    <p class="ref-label">Body Text (Proxima Nova)</p>
+    <p class="body-lg">Body Large — 18px / 168% line-height. Used for lead paragraphs and larger content areas.</p>
+    <p class="body-sm">Body Small — 14px / 174% line-height. Default body text used throughout the site.</p>
+    <p class="caption">Caption — 12px / 160% line-height. Used for small labels, meta text, and captions.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BUTTONS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Buttons</h2>
+
+    <p class="ref-label">Variants</p>
+    <div class="ref-row">
+      <button class="btn btn-primary btn-md">Primary</button>
+      <button class="btn btn-secondary btn-md">Secondary</button>
+      <button class="btn btn-outline btn-md">Outline</button>
+      <button class="btn btn-text btn-md">Text Link</button>
+      <button class="btn btn-primary btn-md" disabled>Disabled</button>
+    </div>
+
+    <p class="ref-label">Sizes</p>
+    <div class="ref-row">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary btn-md">Medium</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+    </div>
+
+    <p class="ref-label">With Icons</p>
+    <div class="ref-row">
+      <button class="btn btn-primary btn-md"><span class="material-symbols-outlined">arrow_forward</span> Continue</button>
+      <button class="btn btn-secondary btn-md"><span class="material-symbols-outlined">download</span> Download</button>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FORMS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Form Elements</h2>
+
+    <div style="max-width: 480px;">
+      <p class="ref-label">Text Input</p>
+      <label for="ref-input">Full Name</label>
+      <input type="text" id="ref-input" class="form-input" placeholder="Enter your name">
+      <p class="form-hint">Your legal first and last name.</p>
+
+      <br>
+      <p class="ref-label">Error State</p>
+      <label for="ref-input-err">Email Address</label>
+      <input type="email" id="ref-input-err" class="form-input is-error" value="not-an-email">
+      <p class="form-error">Please enter a valid email address.</p>
+
+      <br>
+      <p class="ref-label">Disabled</p>
+      <input type="text" class="form-input" value="Cannot edit" disabled>
+
+      <br>
+      <p class="ref-label">Textarea</p>
+      <label for="ref-textarea">Message</label>
+      <textarea id="ref-textarea" class="form-textarea" placeholder="Tell us about your project..."></textarea>
+
+      <br>
+      <p class="ref-label">Select</p>
+      <label for="ref-select">Interest</label>
+      <select id="ref-select" class="form-select">
+        <option>Custom Homes</option>
+        <option>Renovations</option>
+        <option>Commercial</option>
+      </select>
+
+      <br>
+      <p class="ref-label">Checkboxes</p>
+      <label class="form-check">
+        <input type="checkbox" checked>
+        <span class="form-check-label">I agree to the terms</span>
+      </label>
+      <label class="form-check">
+        <input type="checkbox">
+        <span class="form-check-label">Subscribe to newsletter</span>
+      </label>
+
+      <br>
+      <p class="ref-label">Radio Buttons</p>
+      <label class="form-check">
+        <input type="radio" name="ref-radio" checked>
+        <span class="form-check-label">New construction</span>
+      </label>
+      <label class="form-check">
+        <input type="radio" name="ref-radio">
+        <span class="form-check-label">Renovation</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BADGES -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Badges</h2>
+    <div class="ref-row">
+      <span class="badge badge-primary">Primary</span>
+      <span class="badge badge-secondary">Secondary</span>
+      <span class="badge badge-success">Success</span>
+      <span class="badge badge-warning">Warning</span>
+      <span class="badge badge-error">Error</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LINKS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Links</h2>
+    <p>This is a paragraph with an <a href="#">inline link</a> that shows hover, visited, and focus states.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- LISTS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Lists</h2>
+
+    <p class="ref-label">Unordered</p>
+    <ul>
+      <li>Custom home design</li>
+      <li>Site evaluation and planning</li>
+      <li>Construction management</li>
+    </ul>
+
+    <p class="ref-label">Ordered</p>
+    <ol>
+      <li>Initial consultation</li>
+      <li>Design phase</li>
+      <li>Construction</li>
+      <li>Final walkthrough</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BLOCKQUOTE -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Blockquote</h2>
+    <blockquote>Building a home is one of the most personal investments you'll ever make. We treat it that way.</blockquote>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- DIVIDER -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Divider</h2>
+    <p>Content above the divider.</p>
+    <hr>
+    <p>Content below the divider.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ICONS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Icons</h2>
+    <p class="ref-label">Sizes</p>
+    <div class="ref-row">
+      <span class="material-symbols-outlined icon-sm">home</span>
+      <span class="material-symbols-outlined icon-md">home</span>
+      <span class="material-symbols-outlined icon-lg">home</span>
+    </div>
+    <div class="ref-row">
+      <span class="material-symbols-outlined icon-md">check_circle</span>
+      <span class="material-symbols-outlined icon-md">warning</span>
+      <span class="material-symbols-outlined icon-md">error</span>
+      <span class="material-symbols-outlined icon-md">info</span>
+      <span class="material-symbols-outlined icon-md">arrow_forward</span>
+      <span class="material-symbols-outlined icon-md">phone</span>
+      <span class="material-symbols-outlined icon-md">email</span>
+      <span class="material-symbols-outlined icon-md">location_on</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ALERTS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Alerts</h2>
+    <div style="display:flex; flex-direction:column; gap:var(--space-4);">
+      <div class="alert alert-success"><span class="material-symbols-outlined">check_circle</span> Your form has been submitted successfully.</div>
+      <div class="alert alert-warning"><span class="material-symbols-outlined">warning</span> Please review your information before continuing.</div>
+      <div class="alert alert-error"><span class="material-symbols-outlined">error</span> Something went wrong. Please try again.</div>
+      <div class="alert alert-info"><span class="material-symbols-outlined">info</span> Construction hours are Monday–Friday, 7am–5pm.</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CARDS -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Cards</h2>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:var(--space-6);">
+      <div class="card">
+        <div class="card-body">
+          <h3 style="font-size:24px; margin:0 0 var(--space-3);">Custom Homes</h3>
+          <p class="body-sm">Designed and built to reflect your vision, lifestyle, and the unique character of your lot.</p>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--space-4);">Learn More</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h3 style="font-size:24px; margin:0 0 var(--space-3);">Renovations</h3>
+          <p class="body-sm">Transform your existing space with thoughtful design and quality craftsmanship.</p>
+          <button class="btn btn-outline btn-sm" style="margin-top:var(--space-4);">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- TABLES -->
+  <!-- ============================================================ -->
+  <div class="ref-section">
+    <h2>Tables</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Standard</th>
+            <th>Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Design consultation</td><td>Included</td><td>Included</td></tr>
+          <tr><td>3D renderings</td><td>—</td><td>Included</td></tr>
+          <tr><td>Material selection</td><td>Standard</td><td>Custom</td></tr>
+          <tr><td>Project management</td><td>Included</td><td>Dedicated PM</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

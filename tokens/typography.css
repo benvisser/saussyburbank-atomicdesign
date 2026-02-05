@@ -2,15 +2,17 @@
    SAUSSY BURBANK DESIGN SYSTEM — TYPOGRAPHY TOKENS
    ================================================================
    Font families, heading styles, and body text.
-   Larken = display/headings, Gotham = body/UI.
+   Larken = display/headings, Proxima Nova = body/UI.
 
-   TODO: Replace the font-family declarations below with your
-   actual @font-face rules or Adobe Fonts / Typekit import.
+   Adobe Fonts kit loaded via <link> tag in HTML:
+   <link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
    ================================================================ */
 
+@import url("https://use.typekit.net/qnw7qtb.css");
+
 :root {
-  --font-display: 'Larken', Georgia, 'Times New Roman', serif;
-  --font-body:    'Gotham', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'larken', Georgia, 'Times New Roman', serif;
+  --font-body:    'proxima-nova', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* --- Reset --- */
