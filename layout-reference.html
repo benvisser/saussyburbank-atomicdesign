@@ -114,6 +114,51 @@
     .icon-lg { font-size: 32px; }
 
     /* ================================================================
+       BUTTONS — ATOMS (mirrored from reference.html)
+       ================================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      font-family: var(--font-body);
+      font-weight: 500;
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      white-space: nowrap;
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+    .btn-sm  { font-size: 13px; padding: var(--space-2) var(--space-5); }
+    .btn-md  { font-size: 14px; padding: var(--space-3) var(--space-6); }
+    .btn-lg  { font-size: 16px; padding: var(--space-4) var(--space-8); }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+      color: var(--color-white);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    /* ================================================================
        LAYOUT PAGE STYLES
        ================================================================ */
     .layout-page {
@@ -978,6 +1023,425 @@
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 25px;
       }
+    }
+
+
+    /* ================================================================
+       COMMUNITY FINDER — LAYOUT COMPONENT
+       ================================================================
+
+       "Find Your Community" section — dark surface with a 3-column
+       grid of image cards. Features a decorative blueprint illustration
+       on the right side.
+
+       Card variant: .card-image — full-bleed photo with bottom gradient
+       overlay and location label. Extension of the base card component.
+
+       Tailwind mapping:
+         bg-surface-dark      (#35373C) — section background
+         text-surface-dark-text (#F9FAFB) — heading text
+         rounded-lg           (12px) — card corners
+         font-display         (Larken) — heading + card labels
+       ================================================================ */
+
+    .community-section {
+      background: var(--color-surface-dark);
+      padding: var(--space-20) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .community-section { padding: var(--space-24) 0; }
+    }
+
+    .community-section__container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 1024px) {
+      .community-section__container { padding: 0 var(--space-8); }
+    }
+
+    .community-section__title {
+      font-family: var(--font-display);
+      font-size: 45px;
+      font-weight: 100;
+      line-height: 110%;
+      color: var(--color-surface-dark-text);
+      margin-bottom: var(--space-8);
+      max-width: 480px;
+    }
+    @media (min-width: 640px) {
+      .community-section__title {
+        font-size: 64px;
+        margin-bottom: var(--space-10);
+      }
+    }
+
+    .community-section__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+    @media (min-width: 768px) {
+      .community-section__grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* Decorative blueprint illustration */
+    .community-section__blueprint {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .community-section__blueprint .material-symbols-outlined {
+      font-size: 480px;
+      color: rgba(255,255,255,0.06);
+      /* Outline style: unfilled, thin weight for blueprint look */
+      font-variation-settings: 'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 48;
+    }
+
+
+    /* ================================================================
+       CARD IMAGE — COMPONENT EXTENSION
+       ================================================================
+
+       A clickable image card with a gradient overlay and bottom-positioned
+       label. Used for location/community selectors.
+
+       Structure:
+         .card-image
+           img.card-image__img  (or .card-image__placeholder)
+           .card-image__overlay (gradient)
+           .card-image__label   (location name)
+       ================================================================ */
+
+    .card-image {
+      position: relative;
+      display: block;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .card-image__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-base);
+    }
+    .card-image:hover .card-image__img {
+      transform: scale(1.05);
+    }
+
+    /* Gradient overlay for text readability */
+    .card-image__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.15) 35%,
+        transparent 60%
+      );
+      pointer-events: none;
+      transition: background var(--transition-base);
+    }
+    .card-image:hover .card-image__overlay {
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.2) 35%,
+        transparent 60%
+      );
+    }
+
+    /* Location label */
+    .card-image__label {
+      position: absolute;
+      bottom: var(--space-6);
+      left: var(--space-6);
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 100;
+      font-style: italic;
+      line-height: 1.2;
+      color: var(--color-white);
+      z-index: 1;
+    }
+    @media (min-width: 640px) {
+      .card-image__label { font-size: 30px; }
+    }
+
+    /* Placeholder for when no image is available */
+    .card-image__placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition-base);
+    }
+    .card-image:hover .card-image__placeholder {
+      transform: scale(1.05);
+    }
+    .card-image__placeholder .material-symbols-outlined {
+      font-size: 64px;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* Placeholder photo-tone gradients */
+    .card-image__placeholder--warm {
+      background: linear-gradient(160deg, #6B5344 0%, #4A3C35 35%, #35302C 100%);
+    }
+    .card-image__placeholder--cool {
+      background: linear-gradient(160deg, #3B4A6B 0%, #2E3545 35%, #252A35 100%);
+    }
+    .card-image__placeholder--neutral {
+      background: linear-gradient(160deg, #555A65 0%, #3E4050 35%, #30323A 100%);
+    }
+
+
+    /* ================================================================
+       PRICING / COMPARISON — LAYOUT COMPONENT
+       ================================================================
+
+       Saussy Burbank adaptation of Tailwind UI's "Two tiers" pricing.
+       Repurposed as a Home Package comparison — light standard tier
+       beside a dark featured tier.
+
+       Tailwind mapping:
+         bg-white           → bg-surface
+         bg-gray-900        → bg-surface-dark
+         text-indigo-600    → text-primary (#171796)
+         text-indigo-400    → text-white (accent on dark surface)
+         text-gray-900      → text-dark
+         text-gray-600      → text-body
+         text-gray-300      → rgba(white, 0.75)
+         font-semibold      → font-medium (500) / font-display font-thin
+         rounded-3xl        → 24px (promotional card radius)
+         ring-1 ring-gray   → border border-border
+         bg-indigo-500      → bg-primary
+         SVG checkmarks     → Material Symbols (check)
+       ================================================================ */
+
+    .pricing-section {
+      position: relative;
+      background: var(--color-surface);
+      padding: var(--space-24) var(--space-6);
+      overflow: hidden;
+    }
+    @media (min-width: 1024px) {
+      .pricing-section { padding: var(--space-24) var(--space-8); }
+    }
+
+    /* Decorative gradient blob */
+    .pricing-section__decoration {
+      position: absolute;
+      top: -48px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 350px;
+      background: radial-gradient(ellipse at center, rgba(23,23,150,0.06) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .pricing-section__header {
+      max-width: 896px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pricing-section__eyebrow {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+    }
+
+    .pricing-section__title {
+      font-family: var(--font-display);
+      font-size: 45px;
+      font-weight: 100;
+      line-height: 110%;
+      color: var(--color-dark);
+      text-wrap: balance;
+      margin-top: var(--space-2);
+    }
+    @media (min-width: 640px) {
+      .pricing-section__title { font-size: 64px; }
+    }
+
+    .pricing-section__desc {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 325;
+      line-height: 168%;
+      color: var(--color-body);
+      max-width: 672px;
+      margin: var(--space-6) auto 0;
+      text-align: center;
+      text-wrap: pretty;
+    }
+
+    .pricing-section__grid {
+      max-width: 512px;
+      margin: var(--space-16) auto 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: var(--space-6) 0;
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 640px) {
+      .pricing-section__grid { margin-top: var(--space-20); gap: 0; }
+    }
+    @media (min-width: 1024px) {
+      .pricing-section__grid {
+        max-width: 896px;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ---- Pricing card base ---- */
+    .pricing-card {
+      border-radius: 24px;
+      padding: var(--space-8);
+    }
+    @media (min-width: 640px) {
+      .pricing-card { padding: var(--space-10); }
+    }
+
+    /* Light tier */
+    .pricing-card--light {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--color-border);
+    }
+    @media (min-width: 640px) {
+      .pricing-card--light {
+        margin: 0 var(--space-8);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    @media (min-width: 1024px) {
+      .pricing-card--light {
+        margin: 0;
+        border-radius: 24px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    /* Featured tier */
+    .pricing-card--featured {
+      position: relative;
+      background: var(--color-surface-dark);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pricing-card__tier {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.75;
+    }
+    .pricing-card--light .pricing-card__tier { color: var(--color-primary); }
+    .pricing-card--featured .pricing-card__tier { color: var(--color-surface-dark-text); }
+
+    .pricing-card__price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    .pricing-card__amount {
+      font-family: var(--font-display);
+      font-size: 45px;
+      font-weight: 100;
+      line-height: 110%;
+    }
+    @media (min-width: 640px) {
+      .pricing-card__amount { font-size: 64px; }
+    }
+    .pricing-card--light .pricing-card__amount { color: var(--color-dark); }
+    .pricing-card--featured .pricing-card__amount { color: var(--color-white); }
+
+    .pricing-card__unit {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 325;
+    }
+    .pricing-card--light .pricing-card__unit { color: var(--color-muted); }
+    .pricing-card--featured .pricing-card__unit { color: rgba(255,255,255,0.5); }
+
+    .pricing-card__desc {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 325;
+      line-height: 1.75;
+      margin-top: var(--space-6);
+    }
+    .pricing-card--light .pricing-card__desc { color: var(--color-body); }
+    .pricing-card--featured .pricing-card__desc { color: rgba(255,255,255,0.75); }
+
+    /* Feature list */
+    .pricing-card__features {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-8) 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    @media (min-width: 640px) {
+      .pricing-card__features { margin-top: var(--space-10); }
+    }
+
+    .pricing-card__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      line-height: 1.75;
+    }
+    .pricing-card--light .pricing-card__feature { color: var(--color-body); }
+    .pricing-card--featured .pricing-card__feature { color: rgba(255,255,255,0.75); }
+
+    .pricing-card__check {
+      flex-shrink: 0;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+    .pricing-card--light .pricing-card__check { color: var(--color-primary); }
+    .pricing-card--featured .pricing-card__check { color: var(--color-white); }
+
+    /* CTA — uses global .btn classes, just adds block layout + margin */
+    .pricing-card .btn {
+      display: flex;
+      width: 100%;
+      margin-top: var(--space-8);
+    }
+    @media (min-width: 640px) {
+      .pricing-card .btn { margin-top: var(--space-10); }
     }
   </style>
 </head>
@@ -1860,6 +2324,509 @@
     <span class="tag">&lt;/div&gt;</span>
   <span class="tag">&lt;/div&gt;</span>
 <span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- COMMUNITY FINDER (IMAGE CARDS) -->
+  <!-- ============================================================ -->
+  <section class="layout-section">
+    <p class="layout-section-title">Section Layout</p>
+    <h2>Community Finder</h2>
+    <p class="layout-section-desc">A dark-surface section with a left-aligned display heading and a 3-column grid of image cards. Each card shows a location photo with a gradient overlay and an italic Larken label. Introduces <code>.card-image</code> — an extension of the base card component.</p>
+
+    <!-- Live Preview -->
+    <div class="layout-preview">
+      <div class="community-section">
+        <!-- Decorative blueprint illustration -->
+        <div class="community-section__blueprint">
+          <span class="material-symbols-outlined">home</span>
+        </div>
+
+        <div class="community-section__container">
+          <h2 class="community-section__title">Find Your Community in The Carolinas</h2>
+
+          <div class="community-section__grid">
+
+            <!-- Charlotte -->
+            <a href="#" class="card-image">
+              <div class="card-image__placeholder card-image__placeholder--warm">
+                <span class="material-symbols-outlined">home</span>
+              </div>
+              <div class="card-image__overlay"></div>
+              <span class="card-image__label">Charlotte</span>
+            </a>
+
+            <!-- Charleston -->
+            <a href="#" class="card-image">
+              <div class="card-image__placeholder card-image__placeholder--cool">
+                <span class="material-symbols-outlined">home</span>
+              </div>
+              <div class="card-image__overlay"></div>
+              <span class="card-image__label">Charleston</span>
+            </a>
+
+            <!-- Myrtle Beach -->
+            <a href="#" class="card-image">
+              <div class="card-image__placeholder card-image__placeholder--neutral">
+                <span class="material-symbols-outlined">home</span>
+              </div>
+              <div class="card-image__overlay"></div>
+              <span class="card-image__label">Myrtle Beach</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Image Component Anatomy -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Card Image — Component Anatomy</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-8);">
+      <dl style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">.card-image</dt>
+          <dd class="body-sm">Root element (<code>&lt;a&gt;</code> or <code>&lt;div&gt;</code>). Sets <code>aspect-ratio: 3/4</code>, <code>overflow: hidden</code>, and <code>rounded-lg</code> (12px). Acts as the positioning context for all child layers.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">.card-image__img</dt>
+          <dd class="body-sm">Full-bleed image with <code>object-fit: cover</code>. Scales to 1.05x on hover for a subtle zoom. Replace with <code>.card-image__placeholder</code> when no photo is available.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">.card-image__overlay</dt>
+          <dd class="body-sm">Bottom-to-top gradient from <code>rgba(0,0,0,0.55)</code> to transparent. Ensures white label text is always readable regardless of image content. Darkens slightly on hover.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">.card-image__label</dt>
+          <dd class="body-sm">Location name in Larken italic, thin weight. Positioned bottom-left with <code>space-6</code> (24px) padding. Responsive: 24px mobile → 30px on sm+.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Class Mapping Table -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Design System Mapping</h3>
+    <div style="overflow-x:auto; margin-bottom: var(--space-8);">
+      <table class="layout-mapping">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Design System</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section background</td>
+            <td><code class="new">bg-surface-dark</code></td>
+            <td>#35373C — dark neutral surface</td>
+          </tr>
+          <tr>
+            <td>Section heading</td>
+            <td><code class="new">text-h3 font-display font-thin text-surface-dark-text sm:text-h2</code></td>
+            <td>Larken on dark — #F9FAFB for readability</td>
+          </tr>
+          <tr>
+            <td>Blueprint illustration</td>
+            <td><code class="new">material-symbols-outlined</code> (home, unfilled, wght 100)</td>
+            <td>480px at 6% white opacity — replace with SVG illustration in production</td>
+          </tr>
+          <tr>
+            <td>Card grid</td>
+            <td><code class="new">grid grid-cols-1 gap-4 md:grid-cols-3</code></td>
+            <td>3 equal columns on md+, stacked on mobile</td>
+          </tr>
+          <tr>
+            <td>Card container</td>
+            <td><code class="new">rounded-lg overflow-hidden aspect-[3/4]</code></td>
+            <td>12px radius, portrait aspect ratio</td>
+          </tr>
+          <tr>
+            <td>Card image</td>
+            <td><code class="new">size-full object-cover hover:scale-105</code></td>
+            <td>Full-bleed cover image with hover zoom</td>
+          </tr>
+          <tr>
+            <td>Gradient overlay</td>
+            <td><code class="new">bg-gradient-to-t from-black/55 via-black/15 to-transparent</code></td>
+            <td>Ensures white label text readability on any image</td>
+          </tr>
+          <tr>
+            <td>Card label</td>
+            <td><code class="new">font-display font-thin italic text-white text-2xl sm:text-3xl</code></td>
+            <td>Larken italic — positioned bottom-left, p-6</td>
+          </tr>
+          <tr>
+            <td>Section padding</td>
+            <td><code class="new">py-20 sm:py-24</code></td>
+            <td>80px → 96px — space-20/space-24</td>
+          </tr>
+          <tr>
+            <td>Container</td>
+            <td><code class="new">max-w-site px-6 lg:px-8</code></td>
+            <td>1280px max width, standard padding</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key Design Decisions -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Key Design Decisions</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-8);">
+      <dl style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Dark surface context</dt>
+          <dd class="body-sm">This is the first layout using <code>bg-surface-dark</code> (#35373C). Heading text uses <code>text-surface-dark-text</code> (#F9FAFB). The dark background creates dramatic contrast with the home photography and the white card labels.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Left-aligned heading</dt>
+          <dd class="body-sm">Unlike other section layouts which center the heading, this pattern left-aligns it with a max-width of ~480px. This creates visual asymmetry with the blueprint illustration on the right, matching the reference design.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Italic display labels</dt>
+          <dd class="body-sm">Card labels use Larken in italic to evoke an editorial, magazine-quality feel. The thin weight (100) and italic combination creates an elegant, luxurious look appropriate for a homebuilder brand.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Blueprint decoration</dt>
+          <dd class="body-sm">The faint house outline uses Material Symbols with <code>FILL: 0</code> and <code>wght: 100</code> to create a thin line-drawing effect. In production, replace with an actual architectural SVG illustration for a more polished result.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Tailwind Equivalent Code -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind-First Implementation</h3>
+    <p class="body-sm" style="margin-bottom: var(--space-4);">The section layout and the reusable <code>.card-image</code> component:</p>
+    <div class="layout-code">
+<pre><span class="cmt">&lt;!-- Community Finder Section --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">class=</span><span class="val">"relative overflow-hidden bg-surface-dark py-20 sm:py-24"</span><span class="tag">&gt;</span>
+
+  <span class="cmt">&lt;!-- Blueprint decoration (replace with SVG in production) --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"pointer-events-none absolute -right-16 top-1/2 -translate-y-1/2"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"/assets/blueprint.svg"</span> <span class="attr">class=</span><span class="val">"w-[480px] opacity-[0.06]"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative z-10 mx-auto max-w-site px-6 lg:px-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h2</span> <span class="attr">class=</span><span class="val">"max-w-md text-h3-mobile font-display font-thin
+            text-surface-dark-text sm:text-h2"</span><span class="tag">&gt;</span>
+      Find Your Community in The Carolinas
+    <span class="tag">&lt;/h2&gt;</span>
+
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mt-8 grid grid-cols-1 gap-4 sm:mt-10 md:grid-cols-3"</span><span class="tag">&gt;</span>
+
+      <span class="cmt">&lt;!-- Card Image component --&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"/communities/charlotte"</span>
+         <span class="attr">class=</span><span class="val">"group relative block overflow-hidden rounded-lg aspect-[3/4]"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"/img/charlotte.jpg"</span> <span class="attr">alt=</span><span class="val">"Charlotte"</span>
+             <span class="attr">class=</span><span class="val">"size-full object-cover transition-transform duration-base
+                    group-hover:scale-105"</span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"pointer-events-none absolute inset-0
+                bg-gradient-to-t from-black/55 via-black/15 to-transparent
+                transition-all duration-base
+                group-hover:from-black/65 group-hover:via-black/20"</span><span class="tag">&gt;&lt;/div&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"absolute bottom-6 left-6 font-display font-thin italic
+               text-2xl text-white sm:text-3xl"</span><span class="tag">&gt;</span>
+          Charlotte
+        <span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;/a&gt;</span>
+
+      <span class="cmt">&lt;!-- Repeat for each location --&gt;</span>
+
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- PRICING / HOME PACKAGES COMPARISON -->
+  <!-- ============================================================ -->
+  <section class="layout-section">
+    <p class="layout-section-title">Section Layout</p>
+    <h2>Home Packages</h2>
+    <p class="layout-section-desc">A two-tier comparison layout with a light standard card and a dark featured card. Adapted from Tailwind UI's "Two tiers" pricing — repurposed for home package selection. Cards nest together with shared edges on desktop.</p>
+
+    <!-- Live Preview -->
+    <div class="layout-preview">
+      <div class="pricing-section">
+        <div class="pricing-section__decoration"></div>
+
+        <div class="pricing-section__header">
+          <p class="pricing-section__eyebrow">Home Packages</p>
+          <h2 class="pricing-section__title">Choose the right home for&nbsp;you</h2>
+        </div>
+        <p class="pricing-section__desc">Every Saussy Burbank home is built with quality craftsmanship and thoughtful design. Choose the package that fits your lifestyle.</p>
+
+        <div class="pricing-section__grid">
+
+          <!-- Light tier: The Craftsman -->
+          <div class="pricing-card pricing-card--light">
+            <h3 class="pricing-card__tier">The Craftsman</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__amount">$340s</span>
+              <span class="pricing-card__unit">starting from</span>
+            </p>
+            <p class="pricing-card__desc">A beautifully designed home with everything you need to live well.</p>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                3–4 bedrooms, 2.5 baths
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Up to 2,400 sq ft
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Energy-efficient construction
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Design studio selections
+              </li>
+            </ul>
+            <a href="#" class="btn btn-outline btn-md">Explore Floor Plans</a>
+          </div>
+
+          <!-- Featured tier: The Estate -->
+          <div class="pricing-card pricing-card--featured">
+            <h3 class="pricing-card__tier">The Estate</h3>
+            <p class="pricing-card__price">
+              <span class="pricing-card__amount">$480s</span>
+              <span class="pricing-card__unit">starting from</span>
+            </p>
+            <p class="pricing-card__desc">Premium living with expanded floor plans and luxury finishes throughout.</p>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                4–5 bedrooms, 3.5 baths
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Up to 3,800 sq ft
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Premium design studio package
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Smart home technology
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Covered outdoor living
+              </li>
+              <li class="pricing-card__feature">
+                <span class="material-symbols-outlined pricing-card__check">check</span>
+                Private lot selection
+              </li>
+            </ul>
+            <a href="#" class="btn btn-primary btn-md">Explore Floor Plans</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Mapping Table -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind UI → Design System Mapping</h3>
+    <div style="overflow-x:auto; margin-bottom: var(--space-8);">
+      <table class="layout-mapping">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Original (Tailwind UI)</th>
+            <th>Design System</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section background</td>
+            <td><code class="old">bg-white</code></td>
+            <td><code class="new">bg-surface</code></td>
+            <td>#FFFFFF</td>
+          </tr>
+          <tr>
+            <td>Eyebrow</td>
+            <td><code class="old">text-base/7 font-semibold text-indigo-600</code></td>
+            <td><code class="new">text-h4 uppercase tracking-wide-caps text-primary</code></td>
+            <td>H4 subheading pattern</td>
+          </tr>
+          <tr>
+            <td>Section heading</td>
+            <td><code class="old">text-5xl font-semibold tracking-tight text-gray-900</code></td>
+            <td><code class="new">text-h3 font-display font-thin text-dark sm:text-h2</code></td>
+            <td>Larken display replaces bold sans</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td><code class="old">text-lg font-medium text-gray-600</code></td>
+            <td><code class="new">text-body-lg font-book text-body</code></td>
+            <td>Proxima Nova 18px</td>
+          </tr>
+          <tr>
+            <td>Light card</td>
+            <td><code class="old">bg-white/60 ring-1 ring-gray-900/10 rounded-3xl</code></td>
+            <td><code class="new">bg-surface/60 border border-border rounded-[24px]</code></td>
+            <td>Translucent white with border token</td>
+          </tr>
+          <tr>
+            <td>Featured card</td>
+            <td><code class="old">bg-gray-900 rounded-3xl shadow-2xl</code></td>
+            <td><code class="new">bg-surface-dark rounded-[24px] shadow-lg</code></td>
+            <td>#35373C — dark neutral surface</td>
+          </tr>
+          <tr>
+            <td>Tier label</td>
+            <td><code class="old">text-base/7 font-semibold text-indigo-600</code></td>
+            <td><code class="new">text-body-sm font-medium text-primary</code></td>
+            <td>On dark card: <code>text-surface-dark-text</code></td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td><code class="old">text-5xl font-semibold tracking-tight text-gray-900</code></td>
+            <td><code class="new">text-h3 font-display font-thin text-dark sm:text-h2</code></td>
+            <td>Larken display for price, on dark: text-white</td>
+          </tr>
+          <tr>
+            <td>Checkmark icons</td>
+            <td><code class="old">&lt;svg&gt; h-6 w-5 text-indigo-600</code></td>
+            <td><code class="new">material-symbols-outlined (check) text-primary</code></td>
+            <td>On dark card: text-white</td>
+          </tr>
+          <tr>
+            <td>Feature list</td>
+            <td><code class="old">text-sm/6 text-gray-600</code></td>
+            <td><code class="new">text-body-sm font-book text-body</code></td>
+            <td>On dark card: rgba(white, 0.75)</td>
+          </tr>
+          <tr>
+            <td>Light CTA</td>
+            <td><code class="old">text-indigo-600 inset-ring-indigo-200</code></td>
+            <td><code class="new">btn btn-outline btn-md</code></td>
+            <td>Global outline button — pill shape, 2px border, fills on hover</td>
+          </tr>
+          <tr>
+            <td>Featured CTA</td>
+            <td><code class="old">bg-indigo-500 text-white hover:bg-indigo-400</code></td>
+            <td><code class="new">btn btn-primary btn-md</code></td>
+            <td>Global primary button — pill shape, solid fill</td>
+          </tr>
+          <tr>
+            <td>Decorative blob</td>
+            <td><code class="old">clip-path polygon, from-[#ff80b5] to-[#9089fc] blur-3xl</code></td>
+            <td><code class="new">radial-gradient(primary at 6% opacity) blur</code></td>
+            <td>Simplified to subtle brand-colored glow</td>
+          </tr>
+          <tr>
+            <td>Card nesting</td>
+            <td><code class="old">sm:rounded-b-none lg:rounded-tr-none lg:rounded-bl-3xl</code></td>
+            <td><code class="new">Same approach with 24px radius</code></td>
+            <td>Light card loses corner radii where it meets featured card</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key Design Decisions -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Key Design Decisions</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-8);">
+      <dl style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Accent colors on dark surface</dt>
+          <dd class="body-sm">The original uses <code>text-indigo-400</code> (a lighter indigo) for accents on the dark card. Since our primary (#171796) has poor contrast on <code>bg-surface-dark</code>, we use <code>text-surface-dark-text</code> (#F9FAFB) and white for all accent elements on the featured card.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Price as display type</dt>
+          <dd class="body-sm">The original uses bold sans-serif for prices. The SB version uses Larken thin weight, turning the price into an elegant display element that matches the heading hierarchy — dramatic yet refined.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Card nesting behavior</dt>
+          <dd class="body-sm">On tablet (sm), the light card loses bottom rounding and gains horizontal margin to tuck behind the featured card. On desktop (lg), it instead loses the right-side rounding to sit flush against the featured card. This creates a visual "upgrade path" leading the eye right.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Homebuilder adaptation</dt>
+          <dd class="body-sm">Pricing is reframed as "starting from $XXXs" instead of exact monthly costs. The feature list becomes home specs (bedrooms, sq ft, finishes) rather than software features. CTAs use "Explore Floor Plans" to drive engagement.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Tailwind Equivalent Code -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind-First Implementation</h3>
+    <p class="body-sm" style="margin-bottom: var(--space-4);">Two-tier card layout using design system Tailwind utilities:</p>
+    <div class="layout-code">
+<pre><span class="cmt">&lt;!-- Home Packages — Two Tier Comparison --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">class=</span><span class="val">"relative isolate bg-surface px-6 py-24 lg:px-8"</span><span class="tag">&gt;</span>
+
+  <span class="cmt">&lt;!-- Header --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto max-w-4xl text-center"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"text-h4 font-body uppercase tracking-wide-caps text-primary"</span><span class="tag">&gt;</span>
+      Home Packages
+    <span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;h2</span> <span class="attr">class=</span><span class="val">"mt-2 text-h3-mobile font-display font-thin text-balance
+            text-dark sm:text-h2"</span><span class="tag">&gt;</span>
+      Choose the right home for you
+    <span class="tag">&lt;/h2&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"mx-auto mt-6 max-w-2xl text-center text-body-lg font-book
+          text-pretty text-body"</span><span class="tag">&gt;</span>
+    Every Saussy Burbank home is built with quality craftsmanship...
+  <span class="tag">&lt;/p&gt;</span>
+
+  <span class="cmt">&lt;!-- Cards --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto mt-16 grid max-w-lg grid-cols-1 items-center
+          gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2"</span><span class="tag">&gt;</span>
+
+    <span class="cmt">&lt;!-- Light tier --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"rounded-[24px] bg-surface/60 p-8 border border-border
+            sm:mx-8 sm:rounded-b-none sm:p-10
+            lg:mx-0 lg:rounded-tr-none lg:rounded-bl-[24px]"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="val">"text-body-sm font-medium text-primary"</span><span class="tag">&gt;</span>The Craftsman<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"mt-4 flex items-baseline gap-x-2"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"text-h3-mobile font-display font-thin text-dark sm:text-h2"</span><span class="tag">&gt;</span>
+          $340s
+        <span class="tag">&lt;/span&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"text-base text-muted"</span><span class="tag">&gt;</span>starting from<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;ul</span> <span class="attr">class=</span><span class="val">"mt-8 space-y-3 text-body-sm font-book text-body sm:mt-10"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;li</span> <span class="attr">class=</span><span class="val">"flex gap-x-3"</span><span class="tag">&gt;</span>
+          <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"material-symbols-outlined text-primary"</span>
+                <span class="attr">style=</span><span class="val">"font-size:20px"</span><span class="tag">&gt;</span>check<span class="tag">&lt;/span&gt;</span>
+          3–4 bedrooms, 2.5 baths
+        <span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> <span class="attr">class=</span><span class="val">"btn btn-outline btn-md mt-8 w-full sm:mt-10"</span><span class="tag">&gt;</span>
+        Explore Floor Plans
+      <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cmt">&lt;!-- Featured tier --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative rounded-[24px] bg-surface-dark p-8 shadow-lg sm:p-10"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h3</span> <span class="attr">class=</span><span class="val">"text-body-sm font-medium text-surface-dark-text"</span><span class="tag">&gt;</span>The Estate<span class="tag">&lt;/h3&gt;</span>
+      <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"mt-4 flex items-baseline gap-x-2"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"text-h3-mobile font-display font-thin text-white sm:text-h2"</span><span class="tag">&gt;</span>
+          $480s
+        <span class="tag">&lt;/span&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"text-base text-white/50"</span><span class="tag">&gt;</span>starting from<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;ul</span> <span class="attr">class=</span><span class="val">"mt-8 space-y-3 text-body-sm font-book text-white/75 sm:mt-10"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;li</span> <span class="attr">class=</span><span class="val">"flex gap-x-3"</span><span class="tag">&gt;</span>
+          <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"material-symbols-outlined text-white"</span>
+                <span class="attr">style=</span><span class="val">"font-size:20px"</span><span class="tag">&gt;</span>check<span class="tag">&lt;/span&gt;</span>
+          4–5 bedrooms, 3.5 baths
+        <span class="tag">&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> <span class="attr">class=</span><span class="val">"btn btn-primary btn-md mt-8 w-full sm:mt-10"</span><span class="tag">&gt;</span>
+        Explore Floor Plans
+      <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
     </div>
 
   </section>
