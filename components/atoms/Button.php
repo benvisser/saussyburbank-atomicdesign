@@ -31,30 +31,35 @@ $class    = $class    ?? '';
 $attrs    = $attrs    ?? [];
 
 // Base classes shared by all button variants.
-$base = 'inline-flex items-center justify-center gap-2 font-body font-medium no-underline border-2 border-transparent rounded-full cursor-pointer transition-all duration-base whitespace-nowrap focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2';
+$base = 'inline-flex items-center justify-center gap-2 font-body font-medium no-underline cursor-pointer transition-all duration-base whitespace-nowrap focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2';
 
-// Size classes.
+// Size classes (not applied to text variant).
 $sizes = [
 	'sm' => 'text-[13px] py-2 px-5',
 	'md' => 'text-[14px] py-3 px-6',
 	'lg' => 'text-[16px] py-4 px-8',
 ];
 
-// Variant classes.
+// Variant classes — text variant omits rounded-full and border-2 since it has no visible container.
 $variants = [
-	'primary'   => 'bg-primary text-white border-primary hover:bg-primary-hover hover:border-primary-hover',
-	'secondary' => 'bg-secondary text-dark border-secondary hover:bg-secondary-hover hover:border-secondary-hover',
-	'outline'   => 'bg-transparent text-primary border-primary hover:bg-primary hover:text-white',
-	'text'      => 'bg-transparent text-primary border-transparent !px-0 !rounded-none underline underline-offset-[3px] hover:text-primary-hover',
+	'primary'   => 'border-2 border-primary rounded-full bg-primary text-white hover:bg-primary-hover hover:border-primary-hover',
+	'secondary' => 'border-2 border-secondary rounded-full bg-secondary text-dark hover:bg-secondary-hover hover:border-secondary-hover',
+	'outline'   => 'border-2 border-primary rounded-full bg-transparent text-primary hover:bg-primary hover:text-white',
+	'text'      => 'bg-transparent text-primary underline underline-offset-[3px] hover:text-primary-hover',
 ];
 
 // Disabled classes (override variant).
 $disabled_classes = 'bg-disabled text-disabled-text border-disabled cursor-not-allowed pointer-events-none';
 
+// Text variant uses its own font size; other variants get size padding + pill shape.
+$size_classes = 'text' === $variant
+	? ( 'sm' === $size ? 'text-[13px]' : ( 'lg' === $size ? 'text-[16px]' : 'text-[14px]' ) )
+	: ( $sizes[ $size ] ?? $sizes['md'] );
+
 // Assemble classes.
 $classes = trim( implode( ' ', [
 	$base,
-	$sizes[ $size ] ?? $sizes['md'],
+	$size_classes,
 	$disabled ? $disabled_classes : ( $variants[ $variant ] ?? $variants['primary'] ),
 	$class,
 ] ) );

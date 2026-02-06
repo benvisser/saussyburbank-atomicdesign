@@ -28,10 +28,10 @@ $icon = $icon ?: ( $icons[ $type ] ?? 'info' );
 $base = 'flex items-start gap-3 py-4 px-5 rounded-md text-body-sm leading-normal border-l-[3px]';
 
 $types = [
-	'success' => 'bg-success-light text-success-text border-success',
-	'warning' => 'bg-warning-light text-warning-text border-warning',
-	'error'   => 'bg-error-light text-error-text border-error',
-	'info'    => 'bg-info-light text-info-text border-info',
+	'success' => 'bg-success-bg text-success-text border-success',
+	'warning' => 'bg-warning-bg text-warning-text border-warning',
+	'error'   => 'bg-error-bg text-error-text border-error',
+	'info'    => 'bg-info-bg text-info-text border-info',
 ];
 
 $classes = trim( implode( ' ', [

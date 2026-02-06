@@ -70,6 +70,7 @@ module.exports = {
         info: {
           DEFAULT: '#2563EB',
           light:   '#EFF6FF',
+          bg:      '#EFF6FF',
           text:    '#1E40AF',
         },
 
