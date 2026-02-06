@@ -1,0 +1,101 @@
+/* ================================================================
+   SAUSSY BURBANK DESIGN SYSTEM — TYPOGRAPHY TOKENS
+   ================================================================
+   Font families, heading styles, and body text.
+   Larken = display/headings, Proxima Nova = body/UI.
+
+   Adobe Fonts kit loaded via <link> tag in HTML:
+   <link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
+   ================================================================ */
+
+@import url("https://use.typekit.net/qnw7qtb.css");
+
+:root {
+  --font-display: 'larken', Georgia, 'Times New Roman', serif;
+  --font-body:    'proxima-nova', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 325;
+  font-size: 14px;
+  line-height: 174%;
+  color: var(--color-body);
+}
+
+/* --- Headings --- */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: 80px;
+  font-weight: 100;
+  line-height: 102%;
+  color: var(--color-dark);
+  text-align: center;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 100;
+  line-height: 110%;
+  color: var(--color-dark);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: 45px;
+  font-weight: 100;
+  line-height: 110%;
+  color: var(--color-dark);
+}
+
+h4, .h4 {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 325;
+  line-height: normal;
+  color: var(--color-body);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* --- Body text --- */
+.body-lg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 325;
+  line-height: 168%;
+  color: var(--color-body);
+}
+
+.body-sm {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 325;
+  line-height: 174%;
+  color: var(--color-body);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 325;
+  line-height: 160%;
+  color: var(--color-muted);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  h1, .h1 { font-size: 48px; }
+  h2, .h2 { font-size: 40px; }
+  h3, .h3 { font-size: 30px; }
+}

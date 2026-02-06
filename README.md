@@ -1,51 +1,80 @@
-# Saussy Burbank — Atomic Design System
+# Saussy Burbank — Atomic Design System (v2 — Tailwind-First)
 
-A reusable design system for Saussy Burbank's marketing website, built with atomic design principles for use in a WordPress custom theme with Tailwind CSS.
+A Tailwind-first design system for Saussy Burbank's marketing website, built with atomic design principles for use in a WordPress custom theme.
 
-## Structure
+## Architecture
+
+Design tokens live in `tailwind.config.js` (single source of truth). Components are PHP template partials that compose Tailwind utility classes.
 
 ```
-├── tokens/              # Design tokens (CSS custom properties)
-│   ├── colors.css       # Brand, neutral, semantic, surface, interactive colors
-│   ├── typography.css   # Font families, sizes, weights, line-heights
-│   └── spacing.css      # Spacing scale, sizing, radii, shadows, transitions
-├── atoms/               # Smallest UI building blocks
-│   ├── buttons.css      # Primary, secondary, outline, text — sm/md/lg
-│   ├── forms.css        # Inputs, selects, textareas, checkboxes, radios
-│   ├── badges.css       # Status badges (primary, success, warning, error)
-│   ├── links.css        # Link styles with hover, visited, focus states
-│   ├── lists.css        # Ordered and unordered list styles
-│   ├── blockquote.css   # Pull quote styling
-│   ├── divider.css      # Horizontal rules
-│   └── icons.css        # Material Symbols config and size classes
-├── molecules/           # Combinations of atoms
-│   ├── alerts.css       # Success, warning, error, info alert banners
-│   ├── cards.css        # Card container with hover states
-│   └── tables.css       # Data table styles
-├── tailwind.config.js   # Tailwind theme extension using design tokens
-├── design-system.css    # Combined import file (load this one file)
-├── reference.html       # Visual reference page showing all components
+├── tailwind.config.js          # ALL design tokens (colors, fonts, spacing, etc.)
+├── assets/css/main.css         # @tailwind directives + minimal @layer components
+├── components/
+│   ├── atoms/                  # Smallest UI building blocks
+│   │   ├── Button.php          # $variant, $size, $label, $icon, $disabled
+│   │   ├── Badge.php           # $variant, $label
+│   │   ├── Icon.php            # $name, $size
+│   │   ├── Input.php           # $name, $label, $error, $hint
+│   │   ├── Select.php          # $name, $label, $options
+│   │   ├── Textarea.php        # $name, $label, $hint, $error
+│   │   ├── Checkbox.php        # $name, $label, $type (checkbox|radio)
+│   │   └── Link.php            # $label, $href, $external
+│   ├── molecules/              # Combinations of atoms
+│   │   ├── Alert.php           # $type, $message (auto icon)
+│   │   ├── Card.php            # $content, $href
+│   │   └── FormField.php       # Delegates to atoms by $type
+│   └── organisms/              # Coming soon
+├── reference.html              # Visual reference with migration guide
+├── docs/
+│   ├── MIGRATION.md            # v1 → v2 migration guide
+│   └── legacy-tokens/          # Archived v1 CSS files
 └── README.md
 ```
 
-## Usage
+## Quick Start
 
-### Option A: Single import
+### 1. Install Tailwind and load the config
+
+Copy `tailwind.config.js` into your WordPress theme, or merge its `theme.extend` values into your existing config.
+
+### 2. Include the stylesheet
+
+Add to your theme's `<head>`:
+
 ```html
-<link rel="stylesheet" href="design-system.css">
+<!-- Adobe Fonts: Larken + Proxima Nova -->
+<link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
+
+<!-- Material Symbols -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<!-- Compiled Tailwind CSS -->
+<link rel="stylesheet" href="assets/css/main.css">
 ```
 
-### Option B: Individual imports
-```css
-@import 'tokens/colors.css';
-@import 'tokens/typography.css';
-@import 'tokens/spacing.css';
-@import 'atoms/buttons.css';
-/* ... etc */
-```
+### 3. Use PHP components
 
-### Tailwind
-Copy the values from `tailwind.config.js` into your WordPress theme's Tailwind config.
+```php
+<?php
+// Primary button with icon
+$variant = 'primary';
+$label   = 'Schedule a Tour';
+$icon    = 'calendar_today';
+include get_template_directory() . '/components/atoms/Button.php';
+
+// Success alert
+$type    = 'success';
+$message = '<strong>Booked!</strong> Your tour is confirmed.';
+include get_template_directory() . '/components/molecules/Alert.php';
+
+// Text input with validation
+$name  = 'email';
+$label = 'Email Address';
+$type  = 'email';
+$error = 'Please enter a valid email.';
+include get_template_directory() . '/components/atoms/Input.php';
+?>
+```
 
 ## Fonts
 
@@ -53,23 +82,25 @@ Copy the values from `tailwind.config.js` into your WordPress theme's Tailwind c
 - **Proxima Nova** (body/UI) — loaded via Adobe Fonts
 - **Material Symbols Outlined** (icons) — Google Fonts, free
 
-Fonts are loaded automatically via the Adobe Fonts kit in `tokens/typography.css`. You can also add the `<link>` tag directly in your theme's `<head>`:
-
-```html
-<link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
-```
+Fonts are loaded via the Adobe Fonts kit (`qnw7qtb`). The `@import` is included in `assets/css/main.css`.
 
 ## Accessibility
 
 - All interactive elements include visible `:focus-visible` outlines
 - Contrast ratios checked against WCAG AA (see reference.html for notes)
-- Form elements include error states with `aria-` attribute support
-- Semantic HTML used throughout
+- Form components auto-generate `aria-invalid`, `aria-describedby`, and `aria-required` attributes
+- Semantic HTML enforced by PHP component templates
 
 ## Adding Components
 
 Follow atomic design principles:
-1. **Atoms** → single HTML elements (button, input, badge)
-2. **Molecules** → simple groups of atoms (alert = icon + text, card = container + content)
-3. **Organisms** → complex sections (header, hero, footer) — *coming soon*
-4. **Templates** → page-level layouts — *coming soon*
+1. **Atoms** — single HTML elements (button, input, badge)
+2. **Molecules** — simple groups of atoms (alert = icon + text, card = container + content)
+3. **Organisms** — complex sections (header, hero, footer) — *coming soon*
+4. **Templates** — page-level layouts — *coming soon*
+
+Use inline Tailwind utilities in PHP templates. Only use `@layer components` in `main.css` for patterns requiring SVG backgrounds or 5+ pseudo-class states.
+
+## Migration from v1
+
+See [docs/MIGRATION.md](docs/MIGRATION.md) for the full migration guide, including class-to-utility mappings.

@@ -1,0 +1,111 @@
+/*
+ * Saussy Burbank Design System — Main Stylesheet
+ *
+ * This file contains ONLY:
+ *   1. Tailwind directives
+ *   2. Adobe Fonts import
+ *   3. Material Symbols icon config
+ *   4. @layer components for base styles that CANNOT live in PHP templates
+ *      (form element states, checkbox/radio custom appearance)
+ *
+ * All component styling lives in PHP templates via Tailwind utilities.
+ * Design tokens live in tailwind.config.js (single source of truth).
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Adobe Fonts — Larken + Proxima Nova */
+@import url("https://use.typekit.net/qnw7qtb.css");
+
+/* ================================================================
+   BASE LAYER — Sensible defaults for bare HTML elements
+   ================================================================ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Material Symbols default settings */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+/* ================================================================
+   COMPONENT LAYER — Only patterns used 5+ times with complex states
+   that can't be expressed purely in Tailwind utility classes.
+   ================================================================ */
+@layer components {
+  /*
+   * Form inputs — shared base for .form-input, .form-textarea, .form-select.
+   * Focus rings, hover borders, disabled states, and error states require
+   * pseudo-class combinations that are cleaner as @apply than 20+ utilities.
+   */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    @apply block w-full font-body text-body-sm font-book leading-normal
+           text-dark bg-surface border border-border rounded-md
+           py-3 px-4 transition-colors duration-fast
+           placeholder:text-muted
+           hover:border-muted
+           focus:outline-none focus:border-primary focus:shadow-focus-ring
+           disabled:bg-surface-alt disabled:text-disabled-text disabled:cursor-not-allowed;
+  }
+
+  .form-textarea {
+    @apply min-h-[120px] resize-y;
+  }
+
+  /* Select dropdown arrow */
+  .form-select {
+    @apply appearance-none pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  /*
+   * Checkbox & Radio — custom appearance requires SVG backgrounds
+   * that can't be done with utility classes alone.
+   */
+  .form-check {
+    @apply flex items-start gap-3 cursor-pointer;
+  }
+
+  .form-check input[type="checkbox"],
+  .form-check input[type="radio"] {
+    @apply appearance-none w-[18px] h-[18px] min-w-[18px]
+           border-[1.5px] border-border bg-surface cursor-pointer
+           transition-all duration-fast mt-0.5
+           checked:bg-primary checked:border-primary
+           focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-2;
+  }
+
+  .form-check input[type="checkbox"] {
+    @apply rounded-sm;
+  }
+
+  .form-check input[type="radio"] {
+    @apply rounded-full;
+  }
+
+  .form-check input:checked[type="checkbox"] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .form-check input:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,%3Ccircle xmlns='http://www.w3.org/2000/svg' cx='6' cy='6' r='3' fill='white'/%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

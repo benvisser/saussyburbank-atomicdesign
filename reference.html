@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saussy Burbank — Design System v1.0</title>
+  <title>Saussy Burbank — Design System v2.0 (Tailwind-First)</title>
 
   <!-- Adobe Fonts: Larken + Proxima Nova -->
   <link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
@@ -584,8 +584,9 @@
   <!-- HEADER -->
   <header class="ds-header">
     <h1>Saussy Burbank</h1>
-    <h4>Design System v1.0</h4>
+    <h4>Design System v2.0 — Tailwind-First</h4>
     <p>Atomic component reference for the marketing website</p>
+    <p style="margin-top:8px;font-size:13px;"><em>Tokens live in <code>tailwind.config.js</code>. Components are PHP partials in <code>/components/</code>.</em></p>
   </header>
 
   <!-- ============================================================ -->
@@ -1051,45 +1052,147 @@
   </section>
 
   <!-- ============================================================ -->
-  <!-- TAILWIND CONFIG -->
+  <!-- MIGRATION GUIDE -->
   <!-- ============================================================ -->
-  <section class="ds-section" id="tailwind">
+  <section class="ds-section" id="migration">
+    <p class="ds-section-title">Migration</p>
+    <h2>v1 CSS Classes &rarr; v2 Tailwind Utilities</h2>
+    <p class="body-sm" style="margin-bottom: var(--space-6);">The v2 architecture moves from custom CSS component classes to Tailwind utility classes composed in PHP template partials. Below is the mapping from old classes to new Tailwind equivalents.</p>
+
+    <div class="ds-subsection">
+      <h3>Buttons</h3>
+      <div class="ds-example" style="overflow-x:auto;">
+        <table style="font-size:13px;">
+          <thead>
+            <tr><th>Old Class</th><th>New Tailwind Classes</th><th>PHP Component</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>.btn</code></td><td><code>inline-flex items-center justify-center gap-2 font-body font-medium no-underline border-2 border-transparent rounded-full cursor-pointer transition-all duration-base whitespace-nowrap</code></td><td rowspan="5"><code>Button.php</code><br><code>$variant</code> prop</td></tr>
+            <tr><td><code>.btn-primary</code></td><td><code>bg-primary text-white border-primary hover:bg-primary-hover hover:border-primary-hover</code></td></tr>
+            <tr><td><code>.btn-secondary</code></td><td><code>bg-secondary text-dark border-secondary hover:bg-secondary-hover hover:border-secondary-hover</code></td></tr>
+            <tr><td><code>.btn-outline</code></td><td><code>bg-transparent text-primary border-primary hover:bg-primary hover:text-white</code></td></tr>
+            <tr><td><code>.btn-sm / .btn-md / .btn-lg</code></td><td><code>text-[13px] py-2 px-5</code> / <code>text-[14px] py-3 px-6</code> / <code>text-[16px] py-4 px-8</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Forms</h3>
+      <div class="ds-example" style="overflow-x:auto;">
+        <table style="font-size:13px;">
+          <thead>
+            <tr><th>Old Class</th><th>New Approach</th><th>PHP Component</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>.form-input</code></td><td>Kept as <code>@layer component</code> in <code>main.css</code> (complex pseudo-states)</td><td><code>Input.php</code></td></tr>
+            <tr><td><code>.form-select</code></td><td>Kept as <code>@layer component</code> (SVG dropdown arrow)</td><td><code>Select.php</code></td></tr>
+            <tr><td><code>.form-textarea</code></td><td>Kept as <code>@layer component</code></td><td><code>Textarea.php</code></td></tr>
+            <tr><td><code>.form-check</code></td><td>Kept as <code>@layer component</code> (SVG check/radio marks)</td><td><code>Checkbox.php</code></td></tr>
+            <tr><td><code>.is-error</code></td><td><code>border-error focus:shadow-error-ring</code></td><td>Via <code>$error</code> prop</td></tr>
+            <tr><td><code>.form-error</code></td><td><code>text-[13px] text-error mt-1</code></td><td>Auto-rendered by component</td></tr>
+            <tr><td><code>.form-hint</code></td><td><code>text-[13px] text-muted mt-1</code></td><td>Via <code>$hint</code> prop</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Alerts, Badges, Cards</h3>
+      <div class="ds-example" style="overflow-x:auto;">
+        <table style="font-size:13px;">
+          <thead>
+            <tr><th>Old Class</th><th>New Tailwind Classes</th><th>PHP Component</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>.alert .alert-success</code></td><td><code>flex items-start gap-3 py-4 px-5 rounded-md text-body-sm border-l-[3px] bg-success-light text-success-text border-success</code></td><td><code>Alert.php</code> <code>$type</code> prop</td></tr>
+            <tr><td><code>.badge .badge-primary</code></td><td><code>inline-flex items-center gap-1 font-body text-[12px] font-medium py-1 px-3 rounded-full bg-primary text-white</code></td><td><code>Badge.php</code> <code>$variant</code> prop</td></tr>
+            <tr><td><code>.card .card-body</code></td><td><code>bg-surface border border-border rounded-lg overflow-hidden transition-shadow duration-base hover:shadow-lg</code> + <code>p-6</code></td><td><code>Card.php</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Design Tokens</h3>
+      <div class="ds-example" style="overflow-x:auto;">
+        <table style="font-size:13px;">
+          <thead>
+            <tr><th>Old CSS Variable</th><th>Tailwind Utility</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>var(--color-primary)</code></td><td><code>bg-primary</code> / <code>text-primary</code> / <code>border-primary</code></td></tr>
+            <tr><td><code>var(--font-display)</code></td><td><code>font-display</code></td></tr>
+            <tr><td><code>var(--font-body)</code></td><td><code>font-body</code></td></tr>
+            <tr><td><code>var(--space-6)</code></td><td><code>p-6</code> / <code>m-6</code> / <code>gap-6</code></td></tr>
+            <tr><td><code>var(--radius-md)</code></td><td><code>rounded-md</code></td></tr>
+            <tr><td><code>var(--shadow-lg)</code></td><td><code>shadow-lg</code></td></tr>
+            <tr><td><code>var(--transition-base)</code></td><td><code>duration-base</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ARCHITECTURE -->
+  <!-- ============================================================ -->
+  <section class="ds-section" id="architecture">
     <p class="ds-section-title">Developer Reference</p>
-    <h2>Tailwind Configuration</h2>
-    <p class="body-sm" style="margin-bottom: var(--space-4);">Copy this into your <code>tailwind.config.js</code> → <code>theme.extend</code> to use these tokens as utility classes.</p>
+    <h2>New Architecture</h2>
 
     <div class="ds-example" style="background:#1e1e2e; border-radius: var(--radius-md); padding: var(--space-6); overflow-x:auto;">
-<pre style="color:#cdd6f4; font-family: 'SF Mono', 'Fira Code', monospace; font-size:13px; line-height:1.6; margin:0; white-space:pre;"><span style="color:#89b4fa;">// tailwind.config.js</span>
-module.exports = {
-  theme: {
-    extend: {
-      <span style="color:#f9e2af;">colors</span>: {
-        primary:       { DEFAULT: <span style="color:#a6e3a1;">'#171796'</span>, hover: <span style="color:#a6e3a1;">'#0D0D61'</span>, light: <span style="color:#a6e3a1;">'#EFEFEF'</span> },
-        secondary:     { DEFAULT: <span style="color:#a6e3a1;">'#EFEFEF'</span>, hover: <span style="color:#a6e3a1;">'#E3E3E3'</span> },
-        dark:          <span style="color:#a6e3a1;">'#35373C'</span>,
-        body:          <span style="color:#a6e3a1;">'#6B7280'</span>,
-        muted:         <span style="color:#a6e3a1;">'#9CA3AF'</span>,
-        border:        <span style="color:#a6e3a1;">'#E5E7EB'</span>,
-        surface:       { DEFAULT: <span style="color:#a6e3a1;">'#FFFFFF'</span>, alt: <span style="color:#a6e3a1;">'#FAFAFA'</span>, dark: <span style="color:#a6e3a1;">'#35373C'</span> },
-        success:       { DEFAULT: <span style="color:#a6e3a1;">'#10B981'</span>, light: <span style="color:#a6e3a1;">'#34C092'</span> },
-        warning:       { DEFAULT: <span style="color:#a6e3a1;">'#D97706'</span>, light: <span style="color:#a6e3a1;">'#F59E0B'</span> },
-        error:         { DEFAULT: <span style="color:#a6e3a1;">'#EF4444'</span>, light: <span style="color:#a6e3a1;">'#FEF2F2'</span> },
-        info:          { DEFAULT: <span style="color:#a6e3a1;">'#2563EB'</span>, light: <span style="color:#a6e3a1;">'#EFF6FF'</span> },
-      },
-      <span style="color:#f9e2af;">fontFamily</span>: {
-        display: [<span style="color:#a6e3a1;">'larken'</span>, <span style="color:#a6e3a1;">'Georgia'</span>, <span style="color:#a6e3a1;">'serif'</span>],
-        body:    [<span style="color:#a6e3a1;">'proxima-nova'</span>, <span style="color:#a6e3a1;">'Helvetica Neue'</span>, <span style="color:#a6e3a1;">'Arial'</span>, <span style="color:#a6e3a1;">'sans-serif'</span>],
-      },
-      <span style="color:#f9e2af;">borderRadius</span>: {
-        full: <span style="color:#a6e3a1;">'9999px'</span>,
-      },
-      <span style="color:#f9e2af;">maxWidth</span>: {
-        site: <span style="color:#a6e3a1;">'1280px'</span>,
-        content: <span style="color:#a6e3a1;">'960px'</span>,
-      },
-    },
-  },
-}</pre>
+<pre style="color:#cdd6f4; font-family: 'SF Mono', 'Fira Code', monospace; font-size:13px; line-height:1.6; margin:0; white-space:pre;"><span style="color:#89b4fa;">// File structure</span>
+<span style="color:#f9e2af;">tailwind.config.js</span>        <span style="color:#6c7086;">// Single source of truth for all tokens</span>
+<span style="color:#f9e2af;">assets/css/main.css</span>       <span style="color:#6c7086;">// @tailwind directives + minimal @layer components</span>
+<span style="color:#f9e2af;">components/</span>
+  <span style="color:#f9e2af;">atoms/</span>
+    Button.php              <span style="color:#6c7086;">// $variant, $size, $icon, $disabled</span>
+    Badge.php               <span style="color:#6c7086;">// $variant, $label</span>
+    Icon.php                <span style="color:#6c7086;">// $name, $size</span>
+    Input.php               <span style="color:#6c7086;">// $name, $label, $error, $hint</span>
+    Select.php              <span style="color:#6c7086;">// $name, $label, $options</span>
+    Textarea.php            <span style="color:#6c7086;">// $name, $label, $hint</span>
+    Checkbox.php            <span style="color:#6c7086;">// $name, $label, $type (checkbox|radio)</span>
+    Link.php                <span style="color:#6c7086;">// $label, $href, $external</span>
+  <span style="color:#f9e2af;">molecules/</span>
+    Alert.php               <span style="color:#6c7086;">// $type, $message (auto icon)</span>
+    Card.php                <span style="color:#6c7086;">// $content, $href</span>
+    FormField.php           <span style="color:#6c7086;">// Delegates to atoms based on $type</span>
+  <span style="color:#f9e2af;">organisms/</span>              <span style="color:#6c7086;">// Coming soon</span>
+<span style="color:#f9e2af;">docs/</span>
+  MIGRATION.md              <span style="color:#6c7086;">// Full migration guide</span>
+  <span style="color:#f9e2af;">legacy-tokens/</span>          <span style="color:#6c7086;">// Archived v1 CSS files</span></pre>
+    </div>
+
+    <div class="ds-subsection" style="margin-top: var(--space-8);">
+      <h3>PHP Component Usage</h3>
+      <div class="ds-example" style="background:#1e1e2e; border-radius: var(--radius-md); padding: var(--space-6); overflow-x:auto;">
+<pre style="color:#cdd6f4; font-family: 'SF Mono', 'Fira Code', monospace; font-size:13px; line-height:1.6; margin:0; white-space:pre;"><span style="color:#89b4fa;">// Button</span>
+<span style="color:#cba6f7;">&lt;?php</span>
+$variant = <span style="color:#a6e3a1;">'primary'</span>;
+$size    = <span style="color:#a6e3a1;">'md'</span>;
+$label   = <span style="color:#a6e3a1;">'Get Started'</span>;
+$icon    = <span style="color:#a6e3a1;">'arrow_forward'</span>;
+include <span style="color:#a6e3a1;">'components/atoms/Button.php'</span>;
+<span style="color:#cba6f7;">?&gt;</span>
+
+<span style="color:#89b4fa;">// Alert</span>
+<span style="color:#cba6f7;">&lt;?php</span>
+$type    = <span style="color:#a6e3a1;">'success'</span>;
+$message = <span style="color:#a6e3a1;">'&lt;strong&gt;Done!&lt;/strong&gt; Your tour is booked.'</span>;
+include <span style="color:#a6e3a1;">'components/molecules/Alert.php'</span>;
+<span style="color:#cba6f7;">?&gt;</span>
+
+<span style="color:#89b4fa;">// Input with error</span>
+<span style="color:#cba6f7;">&lt;?php</span>
+$name  = <span style="color:#a6e3a1;">'email'</span>;
+$label = <span style="color:#a6e3a1;">'Email Address'</span>;
+$type  = <span style="color:#a6e3a1;">'email'</span>;
+$error = <span style="color:#a6e3a1;">'Please enter a valid email.'</span>;
+include <span style="color:#a6e3a1;">'components/atoms/Input.php'</span>;
+<span style="color:#cba6f7;">?&gt;</span></pre>
+      </div>
     </div>
   </section>
 
