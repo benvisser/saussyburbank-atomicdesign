@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saussy Burbank — Layout Reference</title>
+
+  <!-- Adobe Fonts: Larken + Proxima Nova -->
+  <link rel="stylesheet" href="https://use.typekit.net/qnw7qtb.css">
+
+  <!-- Material Symbols (Icons) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <style>
+    /* ================================================================
+       DESIGN TOKENS (same as reference.html)
+       ================================================================ */
+    :root {
+      --color-primary:          #171796;
+      --color-primary-hover:    #0D0D61;
+      --color-primary-light:    #EFEFEF;
+      --color-secondary:        #EFEFEF;
+      --color-secondary-hover:  #E3E3E3;
+
+      --color-dark:             #35373C;
+      --color-body:             #6B7280;
+      --color-muted:            #9CA3AF;
+      --color-border:           #E5E7EB;
+      --color-light-bg:         #FAFAFA;
+      --color-white:            #FFFFFF;
+
+      --color-success:          #10B981;
+      --color-warning:          #D97706;
+      --color-error:            #EF4444;
+      --color-info:             #2563EB;
+
+      --color-surface:          #FFFFFF;
+      --color-surface-alt:      #FAFAFA;
+      --color-surface-dark:     #35373C;
+      --color-surface-dark-text:#F9FAFB;
+      --color-overlay:          rgba(0,0,0,0.5);
+
+      --color-focus-ring:       #171796;
+
+      --space-1:   4px;
+      --space-2:   8px;
+      --space-3:   12px;
+      --space-4:   16px;
+      --space-5:   20px;
+      --space-6:   24px;
+      --space-8:   32px;
+      --space-10:  40px;
+      --space-12:  48px;
+      --space-16:  64px;
+      --space-20:  80px;
+      --space-24:  96px;
+
+      --max-width:    1280px;
+      --content-width: 960px;
+
+      --radius-sm:    4px;
+      --radius-md:    8px;
+      --radius-lg:    12px;
+      --radius-full:  9999px;
+
+      --shadow-sm:    0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md:    0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg:    0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+
+      --transition-fast:    150ms ease;
+      --transition-base:    250ms ease;
+      --transition-slow:    400ms ease;
+
+      --font-display: 'larken', Georgia, 'Times New Roman', serif;
+      --font-body:    'proxima-nova', 'Helvetica Neue', Arial, sans-serif;
+      --font-icons:   'Material Symbols Outlined';
+    }
+
+    /* ================================================================
+       RESET & BASE
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-weight: 325;
+      font-size: 14px;
+      line-height: 174%;
+      color: var(--color-body);
+      background: var(--color-white);
+    }
+    img, svg { display: block; max-width: 100%; }
+
+    /* ================================================================
+       TYPOGRAPHY — ATOMS
+       ================================================================ */
+    h1, .h1 { font-family: var(--font-display); font-size: 80px; font-weight: 100; line-height: 102%; color: var(--color-dark); text-align: center; }
+    h2, .h2 { font-family: var(--font-display); font-size: 64px; font-weight: 100; line-height: 110%; color: var(--color-dark); }
+    h3, .h3 { font-family: var(--font-display); font-size: 45px; font-weight: 100; line-height: 110%; color: var(--color-dark); }
+    h4, .h4 { font-family: var(--font-body); font-size: 14px; font-weight: 325; line-height: normal; color: var(--color-body); text-transform: uppercase; letter-spacing: 0.08em; }
+    .body-lg { font-family: var(--font-body); font-size: 18px; font-weight: 325; line-height: 168%; color: var(--color-body); }
+    .body-sm { font-family: var(--font-body); font-size: 14px; font-weight: 325; line-height: 174%; color: var(--color-body); }
+    .caption { font-family: var(--font-body); font-size: 12px; font-weight: 325; line-height: 160%; color: var(--color-muted); }
+
+    /* ================================================================
+       ICONS — ATOMS
+       ================================================================ */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+    .icon-sm { font-size: 18px; }
+    .icon-md { font-size: 24px; }
+    .icon-lg { font-size: 32px; }
+
+    /* ================================================================
+       LAYOUT PAGE STYLES
+       ================================================================ */
+    .layout-page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-10) var(--space-6);
+    }
+    .layout-header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+      padding-bottom: var(--space-10);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .layout-header h1 { font-size: 48px; margin-bottom: var(--space-3); }
+    .layout-header p { font-size: 16px; color: var(--color-muted); }
+
+    .layout-section {
+      margin-bottom: var(--space-20);
+    }
+    .layout-section-title {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-primary);
+      margin-bottom: var(--space-2);
+    }
+    .layout-section h2 {
+      font-size: 36px;
+      margin-bottom: var(--space-2);
+    }
+    .layout-section-desc {
+      font-size: 14px;
+      color: var(--color-muted);
+      margin-bottom: var(--space-8);
+    }
+
+    .layout-preview {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-6);
+    }
+
+    .layout-code {
+      background: #1e1e2e;
+      border-radius: var(--radius-md);
+      padding: var(--space-6);
+      overflow-x: auto;
+      margin-bottom: var(--space-6);
+    }
+    .layout-code pre {
+      color: #cdd6f4;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0;
+      white-space: pre;
+    }
+    .layout-code .tag  { color: #89b4fa; }
+    .layout-code .attr { color: #f9e2af; }
+    .layout-code .val  { color: #a6e3a1; }
+    .layout-code .cmt  { color: #6c7086; }
+
+    .layout-mapping {
+      width: 100%;
+      font-size: 13px;
+      border-collapse: collapse;
+    }
+    .layout-mapping th {
+      text-align: left;
+      font-weight: 500;
+      color: var(--color-dark);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 2px solid var(--color-border);
+    }
+    .layout-mapping td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-body);
+      vertical-align: top;
+    }
+    .layout-mapping code.old {
+      background: #FEE2E2;
+      color: #991B1B;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      text-decoration: line-through;
+    }
+    .layout-mapping code.new {
+      background: #D1FAE5;
+      color: #065F46;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    .layout-mapping code.keep {
+      background: var(--color-light-bg);
+      color: var(--color-dark);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      h1, .h1 { font-size: 48px; }
+      h2, .h2 { font-size: 40px; }
+      h3, .h3 { font-size: 30px; }
+    }
+
+
+    /* ================================================================
+       FEATURE SECTION — LAYOUT COMPONENT
+       ================================================================
+
+       Saussy Burbank adaptation of the "Feature with 2x2 grid" pattern.
+       Light mode — uses design system tokens on a white surface.
+
+       Tailwind mapping:
+         bg-white        → bg-surface         (#FFFFFF)
+         text-indigo-600 → text-primary        (#171796) — H4 eyebrow
+         text-gray-900   → text-dark           (#35373C)
+         text-gray-700   → text-body           (#6B7280)
+         text-gray-600   → text-body           (#6B7280)
+         bg-indigo-600   → bg-primary          (#171796)
+         SVG icons       → Material Symbols Outlined
+       ================================================================ */
+
+    .feature-section {
+      background: var(--color-surface);
+      padding: var(--space-24) 0;
+    }
+    @media (min-width: 640px) {
+      .feature-section { padding: var(--space-24) 0 var(--space-24); }
+    }
+
+    .feature-section__container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+    @media (min-width: 1024px) {
+      .feature-section__container { padding: 0 var(--space-8); }
+    }
+
+    .feature-section__header {
+      max-width: 672px;        /* max-w-2xl */
+      margin: 0 auto;
+    }
+    @media (min-width: 1024px) {
+      .feature-section__header { text-align: center; }
+    }
+
+    .feature-section__eyebrow {
+      /* H4 subheading style in primary color */
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+    }
+
+    .feature-section__title {
+      font-family: var(--font-display);
+      font-size: 45px;
+      font-weight: 100;
+      line-height: 110%;
+      color: var(--color-dark);
+      margin-top: var(--space-2);
+      text-align: left;
+    }
+    @media (min-width: 640px) {
+      .feature-section__title { font-size: 64px; }
+    }
+    @media (min-width: 1024px) {
+      .feature-section__title { text-align: center; }
+    }
+
+    .feature-section__desc {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 325;
+      line-height: 168%;
+      color: var(--color-body);
+      margin-top: var(--space-6);
+    }
+
+    .feature-section__grid {
+      max-width: 672px;
+      margin: var(--space-16) auto 0;
+    }
+    @media (min-width: 640px) {
+      .feature-section__grid { margin-top: var(--space-20); }
+    }
+    @media (min-width: 1024px) {
+      .feature-section__grid {
+        max-width: 896px;       /* lg:max-w-4xl */
+        margin-top: var(--space-24);
+      }
+    }
+
+    .feature-section__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-10) var(--space-8);
+      max-width: 576px;
+      list-style: none;
+      padding: 0;
+    }
+    @media (min-width: 1024px) {
+      .feature-section__list {
+        grid-template-columns: 1fr 1fr;
+        max-width: none;
+        gap: var(--space-16) var(--space-8);
+      }
+    }
+
+    .feature-section__item {
+      position: relative;
+      padding-left: var(--space-16);
+    }
+
+    .feature-section__icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+    }
+    .feature-section__icon .material-symbols-outlined {
+      font-size: 24px;
+      color: var(--color-white);
+    }
+
+    .feature-section__item-title {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.75;
+      color: var(--color-dark);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .feature-section__item-desc {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 325;
+      line-height: 1.75;
+      color: var(--color-body);
+      margin-top: var(--space-2);
+    }
+
+
+    /* ================================================================
+       STATS SECTION — LAYOUT COMPONENT
+       ================================================================
+
+       Saussy Burbank adaptation of the "Simple on dark" stats strip.
+       Light mode — Larken display font for dramatic stat numbers.
+
+       Tailwind mapping:
+         bg-gray-900                → bg-surface    (#FFFFFF)
+         text-white (values)        → text-dark     (#35373C) + font-display
+         text-gray-400 (labels)     → text-body     (#6B7280)
+         font-semibold tracking-tight → font-thin (Larken handles the weight)
+       ================================================================ */
+
+    .stats-section {
+      background: var(--color-surface);
+      padding: var(--space-24) 0;
+    }
+
+    .stats-section__container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+    @media (min-width: 1024px) {
+      .stats-section__container { padding: 0 var(--space-8); }
+    }
+
+    .stats-section__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-16) var(--space-8);
+      text-align: center;
+      list-style: none;
+      padding: 0;
+    }
+    @media (min-width: 1024px) {
+      .stats-section__grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .stats-section__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .stats-section__label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      line-height: 1.75;
+      color: var(--color-body);
+    }
+
+    .stats-section__value {
+      font-family: var(--font-display);
+      font-size: 45px;
+      font-weight: 100;
+      line-height: 110%;
+      color: var(--color-dark);
+      order: -1;         /* order-first — value appears above label */
+    }
+    @media (min-width: 640px) {
+      .stats-section__value { font-size: 64px; }
+    }
+
+
+    /* ================================================================
+       SITE HEADER / NAV — LAYOUT COMPONENT
+       ================================================================
+
+       Saussy Burbank adaptation of the Tailwind UI "With flyout menu" header.
+       Light mode — simplified to work without @tailwindplus/elements JS.
+
+       Tailwind mapping:
+         bg-white              → bg-surface
+         text-gray-900 (links) → text-dark, font-medium
+         text-gray-600 (descs) → text-body
+         text-gray-400 (icons) → text-muted
+         text-indigo-600       → text-primary (hover accent)
+         bg-gray-50            → bg-surface-alt
+         font-semibold         → font-medium (500)
+         SVG icons             → Material Symbols Outlined
+       ================================================================ */
+
+    .site-header {
+      background: var(--color-surface);
+    }
+
+    .site-header__nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-6);
+    }
+    @media (min-width: 1024px) {
+      .site-header__nav { padding: var(--space-6) var(--space-8); }
+    }
+
+    /* Logo */
+    .site-header__logo {
+      display: flex;
+      flex: 1;
+    }
+    .site-header__logo a {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 100;
+      line-height: 1;
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    .site-header__logo a:hover { color: var(--color-primary); }
+
+    /* Mobile menu button */
+    .site-header__mobile-btn {
+      display: flex;
+      background: none;
+      border: none;
+      padding: var(--space-2);
+      margin: calc(-1 * var(--space-2));
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      color: var(--color-dark);
+    }
+    .site-header__mobile-btn .material-symbols-outlined { font-size: 24px; }
+    @media (min-width: 1024px) {
+      .site-header__mobile-btn { display: none; }
+    }
+
+    /* Desktop nav links */
+    .site-header__links {
+      display: none;
+      align-items: center;
+      gap: var(--space-10);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    @media (min-width: 1024px) {
+      .site-header__links { display: flex; }
+    }
+
+    .site-header__link {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    .site-header__link:hover { color: var(--color-primary); }
+    .site-header__link:visited { color: var(--color-dark); }
+
+    /* Dropdown trigger */
+    .site-header__dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-dark);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color var(--transition-fast);
+    }
+    .site-header__dropdown-trigger:hover { color: var(--color-primary); }
+    .site-header__dropdown-trigger .material-symbols-outlined {
+      font-size: 20px;
+      color: var(--color-muted);
+    }
+
+    /* CTA area */
+    .site-header__cta {
+      display: none;
+      flex: 1;
+      justify-content: flex-end;
+    }
+    @media (min-width: 1024px) {
+      .site-header__cta { display: flex; }
+    }
+    .site-header__cta a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      transition: color var(--transition-fast);
+    }
+    .site-header__cta a:hover { color: var(--color-primary); }
+
+    /* Dropdown panel */
+    .site-header__dropdown {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      max-width: 448px;
+      margin-top: var(--space-3);
+    }
+    .site-header__dropdown-body { padding: var(--space-4); }
+
+    .site-header__dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: background var(--transition-fast);
+    }
+    .site-header__dropdown-item:hover { background: var(--color-surface-alt); }
+
+    .site-header__dropdown-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: var(--radius-md);
+      background: var(--color-surface-alt);
+      transition: background var(--transition-fast);
+    }
+    .site-header__dropdown-item:hover .site-header__dropdown-icon {
+      background: var(--color-surface);
+    }
+    .site-header__dropdown-icon .material-symbols-outlined {
+      font-size: 24px;
+      color: var(--color-body);
+      transition: color var(--transition-fast);
+    }
+    .site-header__dropdown-item:hover .site-header__dropdown-icon .material-symbols-outlined {
+      color: var(--color-primary);
+    }
+
+    .site-header__dropdown-text {
+      flex: 1;
+    }
+    .site-header__dropdown-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-dark);
+      display: block;
+    }
+    .site-header__dropdown-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      color: var(--color-body);
+      margin-top: var(--space-1);
+    }
+
+    .site-header__dropdown-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--color-surface-alt);
+      border-top: 1px solid var(--color-border);
+    }
+    .site-header__dropdown-footer a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: background var(--transition-fast);
+    }
+    .site-header__dropdown-footer a:hover { background: var(--color-border); }
+    .site-header__dropdown-footer a:first-child { border-right: 1px solid var(--color-border); }
+    .site-header__dropdown-footer .material-symbols-outlined {
+      font-size: 20px;
+      color: var(--color-muted);
+    }
+
+    /* Mobile nav panel */
+    .site-header__mobile-panel {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      max-width: 384px;
+    }
+    .site-header__mobile-panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-6);
+    }
+    .site-header__mobile-panel-top a {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 100;
+      color: var(--color-dark);
+      text-decoration: none;
+    }
+    .site-header__mobile-close {
+      background: none;
+      border: none;
+      padding: var(--space-2);
+      margin: calc(-1 * var(--space-2));
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      color: var(--color-dark);
+    }
+    .site-header__mobile-close .material-symbols-outlined { font-size: 24px; }
+
+    .site-header__mobile-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .site-header__mobile-links a {
+      display: block;
+      padding: var(--space-3) 0;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    .site-header__mobile-links a:hover { color: var(--color-primary); }
+
+    .site-header__mobile-sub {
+      list-style: none;
+      padding: 0 0 0 var(--space-6);
+      margin: 0;
+    }
+    .site-header__mobile-sub a {
+      font-size: 14px;
+      font-weight: 500;
+      padding: var(--space-2) 0;
+    }
+
+    .site-header__mobile-cta {
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-6);
+      margin-top: var(--space-6);
+    }
+    .site-header__mobile-cta a {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-decoration: none;
+    }
+
+
+    /* ================================================================
+       BENTO GRID — LAYOUT COMPONENT
+       ================================================================
+
+       Saussy Burbank adaptation of Tailwind UI's "Bento Grid" pattern.
+       Light mode — asymmetric card grid on a subtle alt surface.
+
+       Tailwind mapping:
+         bg-gray-50          → bg-surface-alt      (#FAFAFA)
+         text-indigo-600     → text-primary         (#171796) — eyebrow
+         text-gray-950       → text-dark            (#35373C)
+         text-gray-600       → text-body            (#6B7280)
+         bg-white            → bg-surface           (#FFFFFF)
+         font-medium         → font-medium (500)
+         heading             → font-display font-thin (Larken)
+         rounded-4xl (2rem)  → 24px (bento outer edges only)
+         rounded-lg          → rounded-lg (12px)
+         outline-black/5     → border border-border
+       ================================================================ */
+
+    .bento-section {
+      background: var(--color-surface-alt);
+      padding: var(--space-24) 0;
+    }
+
+    .bento-section__container {
+      max-width: 672px;        /* max-w-2xl */
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+    @media (min-width: 1024px) {
+      .bento-section__container {
+        max-width: var(--max-width);
+        padding: 0 var(--space-8);
+      }
+    }
+
+    .bento-section__eyebrow {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+      text-align: center;
+    }
+
+    .bento-section__title {
+      font-family: var(--font-display);
+      font-size: 45px;
+      font-weight: 100;
+      line-height: 110%;
+      color: var(--color-dark);
+      text-align: center;
+      text-wrap: balance;
+      max-width: 672px;
+      margin: var(--space-2) auto 0;
+    }
+    @media (min-width: 640px) {
+      .bento-section__title { font-size: 64px; }
+    }
+
+    .bento-section__grid {
+      display: grid;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+    @media (min-width: 640px) {
+      .bento-section__grid { margin-top: var(--space-16); }
+    }
+    @media (min-width: 1024px) {
+      .bento-section__grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+    }
+
+    /* ---- Bento card ---- */
+    .bento-card {
+      position: relative;
+    }
+
+    .bento-card__bg {
+      position: absolute;
+      inset: 1px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+    }
+
+    .bento-card__inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+      border-radius: calc(var(--radius-lg) + 1px);
+    }
+
+    .bento-card__overlay {
+      position: absolute;
+      inset: 1px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      pointer-events: none;
+    }
+
+    .bento-card__content {
+      padding: var(--space-8) var(--space-8) var(--space-3);
+    }
+    @media (min-width: 640px) {
+      .bento-card__content { padding: var(--space-10) var(--space-10) 0; }
+    }
+
+    .bento-card__title {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--color-dark);
+      margin-top: var(--space-2);
+    }
+    @media (max-width: 1023px) {
+      .bento-card__title { text-align: center; }
+    }
+
+    .bento-card__desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 325;
+      line-height: 174%;
+      color: var(--color-body);
+      margin-top: var(--space-2);
+      max-width: 672px;
+    }
+    @media (max-width: 1023px) {
+      .bento-card__desc { text-align: center; }
+    }
+
+    .bento-card__visual {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      padding: var(--space-6);
+    }
+
+    .bento-card__placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      width: 100%;
+      height: 100%;
+      min-height: 160px;
+      border-radius: var(--radius-md);
+      background: var(--color-surface-alt);
+      border: 2px dashed var(--color-border);
+    }
+    .bento-card__placeholder .material-symbols-outlined {
+      font-size: 48px;
+      color: var(--color-muted);
+    }
+    .bento-card__placeholder-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-muted);
+    }
+
+    /* Grid placement — desktop */
+    @media (min-width: 1024px) {
+      .bento-card--left      { grid-column: 1; grid-row: 1 / 3; }
+      .bento-card--mid-top   { grid-column: 2; grid-row: 1; }
+      .bento-card--mid-bot   { grid-column: 2; grid-row: 2; }
+      .bento-card--right     { grid-column: 3; grid-row: 1 / 3; }
+
+      .bento-card--left .bento-card__visual,
+      .bento-card--right .bento-card__visual {
+        min-height: 360px;
+      }
+    }
+
+    /* Extra-rounded outer edges (bento signature) — desktop */
+    @media (min-width: 1024px) {
+      .bento-card--left .bento-card__bg,
+      .bento-card--left .bento-card__overlay {
+        border-top-left-radius: 24px;
+        border-bottom-left-radius: 24px;
+      }
+      .bento-card--left .bento-card__inner {
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+      }
+
+      .bento-card--right .bento-card__bg,
+      .bento-card--right .bento-card__overlay {
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px;
+      }
+      .bento-card--right .bento-card__inner {
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+      }
+    }
+
+    /* Extra-rounded outer edges — mobile (first/last cards) */
+    @media (max-width: 1023px) {
+      .bento-card:first-child .bento-card__bg,
+      .bento-card:first-child .bento-card__overlay {
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+      }
+      .bento-card:first-child .bento-card__inner {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+      }
+
+      .bento-card:last-child .bento-card__bg,
+      .bento-card:last-child .bento-card__overlay {
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
+      }
+      .bento-card:last-child .bento-card__inner {
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout-page">
+
+  <!-- HEADER -->
+  <header class="layout-header">
+    <h1>Saussy Burbank</h1>
+    <h4>Layout Reference</h4>
+    <p>Common layout patterns adapted to the design system</p>
+  </header>
+
+
+  <!-- ============================================================ -->
+  <!-- SITE HEADER / NAV -->
+  <!-- ============================================================ -->
+  <section class="layout-section">
+    <p class="layout-section-title">Navigation</p>
+    <h2>Site Header</h2>
+    <p class="layout-section-desc">A responsive header with logo, nav links, a flyout dropdown menu, and a CTA. Adapted from Tailwind UI's "With flyout menu" header. Dropdown and mobile panel are shown statically — interactive behavior requires JS.</p>
+
+    <!-- Live Preview: Desktop Nav -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Desktop Nav Bar</h3>
+    <div class="layout-preview" style="margin-bottom: var(--space-6);">
+      <header class="site-header">
+        <nav class="site-header__nav" aria-label="Global">
+          <div class="site-header__logo">
+            <a href="#">Saussy Burbank</a>
+          </div>
+          <ul class="site-header__links">
+            <li>
+              <button class="site-header__dropdown-trigger">
+                Communities
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
+            </li>
+            <li><a href="#" class="site-header__link">Floor Plans</a></li>
+            <li><a href="#" class="site-header__link">Our Story</a></li>
+            <li><a href="#" class="site-header__link">Homebuyer Resources</a></li>
+          </ul>
+          <div class="site-header__cta">
+            <a href="#">Schedule a Tour <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </nav>
+      </header>
+    </div>
+
+    <!-- Live Preview: Dropdown Panel -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Flyout Dropdown (open state)</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-8); margin-bottom: var(--space-6);">
+      <div class="site-header__dropdown">
+        <div class="site-header__dropdown-body">
+          <a href="#" class="site-header__dropdown-item">
+            <div class="site-header__dropdown-icon">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="site-header__dropdown-text">
+              <span class="site-header__dropdown-label">Briar Chapel</span>
+              <p class="site-header__dropdown-desc">Chapel Hill, NC — trails, town center, and open space</p>
+            </div>
+          </a>
+          <a href="#" class="site-header__dropdown-item">
+            <div class="site-header__dropdown-icon">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="site-header__dropdown-text">
+              <span class="site-header__dropdown-label">Riverlights</span>
+              <p class="site-header__dropdown-desc">Wilmington, NC — waterfront living on the Cape Fear River</p>
+            </div>
+          </a>
+          <a href="#" class="site-header__dropdown-item">
+            <div class="site-header__dropdown-icon">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="site-header__dropdown-text">
+              <span class="site-header__dropdown-label">Wendell Falls</span>
+              <p class="site-header__dropdown-desc">Wendell, NC — resort-style amenities in Wake County</p>
+            </div>
+          </a>
+          <a href="#" class="site-header__dropdown-item">
+            <div class="site-header__dropdown-icon">
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="site-header__dropdown-text">
+              <span class="site-header__dropdown-label">Summers Walk</span>
+              <p class="site-header__dropdown-desc">Davidson, NC — walkable community near Lake Norman</p>
+            </div>
+          </a>
+        </div>
+        <div class="site-header__dropdown-footer">
+          <a href="#">
+            <span class="material-symbols-outlined">map</span>
+            View Map
+          </a>
+          <a href="#">
+            <span class="material-symbols-outlined">phone</span>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Preview: Mobile Nav Panel -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Mobile Nav Panel</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-8); margin-bottom: var(--space-6);">
+      <div class="site-header__mobile-panel">
+        <div class="site-header__mobile-panel-top">
+          <a href="#">Saussy Burbank</a>
+          <button class="site-header__mobile-close">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <ul class="site-header__mobile-links">
+          <li>
+            <a href="#">Communities</a>
+            <ul class="site-header__mobile-sub">
+              <li><a href="#">Briar Chapel</a></li>
+              <li><a href="#">Riverlights</a></li>
+              <li><a href="#">Wendell Falls</a></li>
+              <li><a href="#">Summers Walk</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Floor Plans</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Homebuyer Resources</a></li>
+        </ul>
+        <div class="site-header__mobile-cta">
+          <a href="#">Schedule a Tour</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Mapping Table -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind UI → Design System Mapping</h3>
+    <div style="overflow-x:auto; margin-bottom: var(--space-8);">
+      <table class="layout-mapping">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Original (Tailwind UI)</th>
+            <th>Design System</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Header background</td>
+            <td><code class="old">bg-white</code></td>
+            <td><code class="new">bg-surface</code></td>
+            <td>#FFFFFF</td>
+          </tr>
+          <tr>
+            <td>Logo</td>
+            <td><code class="old">&lt;img&gt;</code> mark</td>
+            <td><code class="new">font-display font-thin text-2xl text-dark</code></td>
+            <td>Text logo in Larken — replace with image in production</td>
+          </tr>
+          <tr>
+            <td>Nav links</td>
+            <td><code class="old">text-sm/6 font-semibold text-gray-900</code></td>
+            <td><code class="new">text-body-sm font-medium text-dark hover:text-primary</code></td>
+            <td>font-medium (500), hover to brand primary</td>
+          </tr>
+          <tr>
+            <td>Dropdown chevron</td>
+            <td><code class="old">&lt;svg&gt; size-5 text-gray-400</code></td>
+            <td><code class="new">material-symbols-outlined text-muted</code> (expand_more)</td>
+            <td>20px icon in muted color</td>
+          </tr>
+          <tr>
+            <td>Dropdown panel</td>
+            <td><code class="old">rounded-3xl bg-white shadow-lg</code></td>
+            <td><code class="new">rounded-lg bg-surface shadow-lg border-border</code></td>
+            <td>12px radius (design system max), added border</td>
+          </tr>
+          <tr>
+            <td>Dropdown item hover</td>
+            <td><code class="old">hover:bg-gray-50</code></td>
+            <td><code class="new">hover:bg-surface-alt</code></td>
+            <td>#FAFAFA</td>
+          </tr>
+          <tr>
+            <td>Dropdown icon bg</td>
+            <td><code class="old">bg-gray-50 group-hover:bg-white</code></td>
+            <td><code class="new">bg-surface-alt hover:bg-surface</code></td>
+            <td>Icon box flips to white on hover</td>
+          </tr>
+          <tr>
+            <td>Dropdown icon color</td>
+            <td><code class="old">text-gray-600 group-hover:text-indigo-600</code></td>
+            <td><code class="new">text-body hover:text-primary</code></td>
+            <td>Icons turn brand primary on hover</td>
+          </tr>
+          <tr>
+            <td>Dropdown label</td>
+            <td><code class="old">font-semibold text-gray-900</code></td>
+            <td><code class="new">font-medium text-dark</code></td>
+            <td>font-medium (500)</td>
+          </tr>
+          <tr>
+            <td>Dropdown description</td>
+            <td><code class="old">text-gray-600</code></td>
+            <td><code class="new">text-body</code></td>
+            <td>#6B7280</td>
+          </tr>
+          <tr>
+            <td>Dropdown footer</td>
+            <td><code class="old">bg-gray-50 divide-gray-900/5</code></td>
+            <td><code class="new">bg-surface-alt border-t border-border</code></td>
+            <td>Subtle divider using border token</td>
+          </tr>
+          <tr>
+            <td>CTA text</td>
+            <td><code class="old">text-sm/6 font-semibold text-gray-900</code></td>
+            <td><code class="new">text-body-sm font-medium text-dark hover:text-primary</code></td>
+            <td>"Schedule a Tour →" replaces "Log in →"</td>
+          </tr>
+          <tr>
+            <td>Mobile menu button</td>
+            <td><code class="old">&lt;svg&gt; size-6 text-gray-700</code></td>
+            <td><code class="new">material-symbols-outlined icon-md text-dark</code> (menu)</td>
+            <td>Hamburger icon</td>
+          </tr>
+          <tr>
+            <td>Interactive behavior</td>
+            <td><code class="old">el-popover, el-dialog, el-disclosure</code></td>
+            <td><code class="new">Custom JS or Alpine.js</code></td>
+            <td>Tailwind+ custom elements not used — implement with preferred JS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tailwind Code -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind-First Implementation</h3>
+    <p class="body-sm" style="margin-bottom: var(--space-4);">Desktop nav bar markup using design system Tailwind utilities:</p>
+    <div class="layout-code">
+<pre><span class="cmt">&lt;!-- Site Header (Tailwind-first, design system tokens) --&gt;</span>
+<span class="tag">&lt;header</span> <span class="attr">class=</span><span class="val">"bg-surface"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;nav</span> <span class="attr">class=</span><span class="val">"mx-auto flex max-w-site items-center justify-between p-6 lg:px-8"</span>
+       <span class="attr">aria-label=</span><span class="val">"Global"</span><span class="tag">&gt;</span>
+
+    <span class="cmt">&lt;!-- Logo --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"flex lg:flex-1"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"/"</span> <span class="attr">class=</span><span class="val">"-m-1.5 p-1.5"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"/assets/logo.svg"</span> <span class="attr">alt=</span><span class="val">"Saussy Burbank"</span> <span class="attr">class=</span><span class="val">"h-8 w-auto"</span> <span class="tag">/&gt;</span>
+      <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cmt">&lt;!-- Mobile menu button --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"flex lg:hidden"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">class=</span><span class="val">"-m-2.5 inline-flex items-center justify-center
+              rounded-md p-2.5 text-dark"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"material-symbols-outlined icon-md"</span><span class="tag">&gt;</span>menu<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cmt">&lt;!-- Desktop links --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"hidden lg:flex lg:gap-x-10"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;button</span> <span class="attr">class=</span><span class="val">"flex items-center gap-x-1 text-body-sm font-medium
+              text-dark hover:text-primary"</span><span class="tag">&gt;</span>
+        Communities
+        <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"material-symbols-outlined text-muted"</span>
+              <span class="attr">style=</span><span class="val">"font-size:20px"</span><span class="tag">&gt;</span>expand_more<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;/button&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> <span class="attr">class=</span><span class="val">"text-body-sm font-medium text-dark hover:text-primary"</span><span class="tag">&gt;</span>
+        Floor Plans
+      <span class="tag">&lt;/a&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> <span class="attr">class=</span><span class="val">"text-body-sm font-medium text-dark hover:text-primary"</span><span class="tag">&gt;</span>
+        Our Story
+      <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cmt">&lt;!-- CTA --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"hidden lg:flex lg:flex-1 lg:justify-end"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> <span class="attr">class=</span><span class="val">"text-body-sm font-medium text-dark hover:text-primary"</span><span class="tag">&gt;</span>
+        Schedule a Tour <span class="tag">&lt;span</span> <span class="attr">aria-hidden=</span><span class="val">"true"</span><span class="tag">&gt;</span>&amp;rarr;<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span></pre>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- FEATURE SECTION WITH 2×2 GRID -->
+  <!-- ============================================================ -->
+  <section class="layout-section">
+    <p class="layout-section-title">Section Layout</p>
+    <h2>Feature Grid (Light)</h2>
+    <p class="layout-section-desc">A centered intro with a 2×2 feature grid on a white surface. Adapted from Tailwind UI's "Feature with 2x2 grid" using Saussy Burbank design tokens and Material Symbols icons.</p>
+
+    <!-- Live Preview -->
+    <div class="layout-preview">
+      <div class="feature-section">
+        <div class="feature-section__container">
+          <div class="feature-section__header">
+            <p class="feature-section__eyebrow">Our Communities</p>
+            <h2 class="feature-section__title">Everything you need to find your dream home</h2>
+            <p class="feature-section__desc">From thoughtfully designed floor plans to resort-style amenities, every Saussy Burbank community is built around the way you want to live.</p>
+          </div>
+
+          <div class="feature-section__grid">
+            <dl class="feature-section__list">
+
+              <div class="feature-section__item">
+                <dt class="feature-section__item-title">
+                  <div class="feature-section__icon">
+                    <span class="material-symbols-outlined">home</span>
+                  </div>
+                  Thoughtful Floor Plans
+                </dt>
+                <dd class="feature-section__item-desc">Open-concept designs with flexible living spaces, gourmet kitchens, and covered outdoor areas for every stage of life.</dd>
+              </div>
+
+              <div class="feature-section__item">
+                <dt class="feature-section__item-title">
+                  <div class="feature-section__icon">
+                    <span class="material-symbols-outlined">lock</span>
+                  </div>
+                  Quality Craftsmanship
+                </dt>
+                <dd class="feature-section__item-desc">Every home is built with premium materials and energy-efficient construction, backed by our comprehensive warranty program.</dd>
+              </div>
+
+              <div class="feature-section__item">
+                <dt class="feature-section__item-title">
+                  <div class="feature-section__icon">
+                    <span class="material-symbols-outlined">park</span>
+                  </div>
+                  Community Amenities
+                </dt>
+                <dd class="feature-section__item-desc">Resort-style pools, miles of trails, clubhouses, and gathering spaces designed to bring neighbors together.</dd>
+              </div>
+
+              <div class="feature-section__item">
+                <dt class="feature-section__item-title">
+                  <div class="feature-section__icon">
+                    <span class="material-symbols-outlined">design_services</span>
+                  </div>
+                  Design Studio
+                </dt>
+                <dd class="feature-section__item-desc">Work with our expert design team to personalize every finish, from countertops and cabinetry to flooring and fixtures.</dd>
+              </div>
+
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Mapping Table -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind UI → Design System Mapping</h3>
+    <div style="overflow-x:auto; margin-bottom: var(--space-8);">
+      <table class="layout-mapping">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Original (Tailwind UI)</th>
+            <th>Design System</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section background</td>
+            <td><code class="old">bg-white</code></td>
+            <td><code class="new">bg-surface</code></td>
+            <td>#FFFFFF — default white surface</td>
+          </tr>
+          <tr>
+            <td>Eyebrow text</td>
+            <td><code class="old">text-base/7 font-semibold text-indigo-600</code></td>
+            <td><code class="new">text-h4 uppercase tracking-wide-caps text-primary</code></td>
+            <td>H4 subheading pattern in brand primary (#171796)</td>
+          </tr>
+          <tr>
+            <td>Section heading</td>
+            <td><code class="old">text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl</code></td>
+            <td><code class="new">text-h3 font-display font-thin text-dark sm:text-h2</code></td>
+            <td>Larken display font replaces bold sans-serif</td>
+          </tr>
+          <tr>
+            <td>Section description</td>
+            <td><code class="old">text-lg/8 text-gray-700</code></td>
+            <td><code class="new">text-body-lg font-body font-book text-body</code></td>
+            <td>Proxima Nova 18px, body color (#6B7280)</td>
+          </tr>
+          <tr>
+            <td>Icon container</td>
+            <td><code class="old">rounded-lg bg-indigo-600</code></td>
+            <td><code class="new">rounded-md bg-primary</code></td>
+            <td>#171796 — brand primary, 8px radius</td>
+          </tr>
+          <tr>
+            <td>Icons</td>
+            <td><code class="old">&lt;svg&gt;</code> (Heroicons)</td>
+            <td><code class="new">material-symbols-outlined icon-md</code></td>
+            <td>Material Symbols (filled, 24px)</td>
+          </tr>
+          <tr>
+            <td>Feature title</td>
+            <td><code class="old">text-base/7 font-semibold text-gray-900</code></td>
+            <td><code class="new">text-base font-medium text-dark</code></td>
+            <td>font-medium (500), dark text (#35373C)</td>
+          </tr>
+          <tr>
+            <td>Feature description</td>
+            <td><code class="old">text-base/7 text-gray-600</code></td>
+            <td><code class="new">text-base font-book text-body</code></td>
+            <td>Body color (#6B7280) — slightly lighter than gray-600</td>
+          </tr>
+          <tr>
+            <td>Container</td>
+            <td><code class="old">max-w-7xl px-6 lg:px-8</code></td>
+            <td><code class="new">max-w-site px-6 lg:px-8</code></td>
+            <td>max-w-site = 1280px (same as 7xl)</td>
+          </tr>
+          <tr>
+            <td>Section padding</td>
+            <td><code class="old">py-24 sm:py-32</code></td>
+            <td><code class="new">py-24</code></td>
+            <td>96px — maps to space-24 in design system</td>
+          </tr>
+          <tr>
+            <td>Grid gap</td>
+            <td><code class="old">gap-x-8 gap-y-10 lg:gap-y-16</code></td>
+            <td><code class="new">gap-x-8 gap-y-10 lg:gap-y-16</code></td>
+            <td>Spacing scale maps 1:1 (space-8=32px, etc.)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Side-by-side Comparison -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Key Design Decisions</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-8);">
+      <dl style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Typography shift</dt>
+          <dd class="body-sm">The original uses bold sans-serif headings. The SB version switches to Larken (thin weight) for a refined, editorial feel that matches the brand's luxury positioning.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Eyebrow as brand accent</dt>
+          <dd class="body-sm">The original's <code>text-indigo-600</code> eyebrow becomes the H4 subheading pattern in <code>text-primary</code> (#171796). On a white surface, the brand primary works perfectly as the accent color.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Icon system</dt>
+          <dd class="body-sm">Heroicons SVGs are replaced with Material Symbols Outlined (filled variant). This keeps icon usage consistent and eliminates inline SVG markup. Use <code>icon-sm</code> (18px), <code>icon-md</code> (24px), or <code>icon-lg</code> (32px).</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Text hierarchy</dt>
+          <dd class="body-sm">Tailwind UI uses <code>gray-900</code> / <code>gray-700</code> / <code>gray-600</code> for 3-tier hierarchy. The design system simplifies to <code>text-dark</code> (#35373C) for headings and <code>text-body</code> (#6B7280) for descriptions — cleaner and more consistent.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Tailwind Equivalent Code -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind-First Implementation</h3>
+    <p class="body-sm" style="margin-bottom: var(--space-4);">When building with Tailwind utilities in PHP components, the markup looks like this:</p>
+    <div class="layout-code">
+<pre><span class="cmt">&lt;!-- Feature Section — Light (Tailwind-first, design system tokens) --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">class=</span><span class="val">"bg-surface py-24"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto max-w-site px-6 lg:px-8"</span><span class="tag">&gt;</span>
+
+    <span class="cmt">&lt;!-- Header --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto max-w-2xl lg:text-center"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"text-h4 font-body uppercase tracking-wide-caps text-primary"</span><span class="tag">&gt;</span>
+        Our Communities
+      <span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;h2</span> <span class="attr">class=</span><span class="val">"mt-2 text-h3-mobile font-display font-thin
+              text-dark sm:text-h3 lg:text-h2"</span><span class="tag">&gt;</span>
+        Everything you need to find your dream home
+      <span class="tag">&lt;/h2&gt;</span>
+      <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"mt-6 text-body-lg font-body font-book text-body"</span><span class="tag">&gt;</span>
+        From thoughtfully designed floor plans to resort-style amenities...
+      <span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+    <span class="cmt">&lt;!-- Grid --&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;dl</span> <span class="attr">class=</span><span class="val">"grid max-w-xl grid-cols-1 gap-x-8 gap-y-10
+              lg:max-w-none lg:grid-cols-2 lg:gap-y-16"</span><span class="tag">&gt;</span>
+
+        <span class="cmt">&lt;!-- Feature Item --&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative pl-16"</span><span class="tag">&gt;</span>
+          <span class="tag">&lt;dt</span> <span class="attr">class=</span><span class="val">"text-base font-medium text-dark"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"absolute top-0 left-0 flex size-10
+                    items-center justify-center rounded-md bg-primary"</span><span class="tag">&gt;</span>
+              <span class="tag">&lt;span</span> <span class="attr">class=</span><span class="val">"material-symbols-outlined icon-md text-white"</span><span class="tag">&gt;</span>
+                home
+              <span class="tag">&lt;/span&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+            Thoughtful Floor Plans
+          <span class="tag">&lt;/dt&gt;</span>
+          <span class="tag">&lt;dd</span> <span class="attr">class=</span><span class="val">"mt-2 text-base font-book text-body"</span><span class="tag">&gt;</span>
+            Open-concept designs with flexible living spaces...
+          <span class="tag">&lt;/dd&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+
+      <span class="tag">&lt;/dl&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/section&gt;</span></pre>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- STATS SECTION -->
+  <!-- ============================================================ -->
+  <section class="layout-section">
+    <p class="layout-section-title">Section Layout</p>
+    <h2>Stats Row</h2>
+    <p class="layout-section-desc">A simple 3-column stats strip. Adapted from Tailwind UI's "Simple on dark" stats section, converted to light mode with the design system's display typography for the big numbers.</p>
+
+    <!-- Live Preview -->
+    <div class="layout-preview">
+      <div class="stats-section">
+        <div class="stats-section__container">
+          <dl class="stats-section__grid">
+            <div class="stats-section__item">
+              <dt class="stats-section__label">Homes Built Since 2004</dt>
+              <dd class="stats-section__value">2,500+</dd>
+            </div>
+            <div class="stats-section__item">
+              <dt class="stats-section__label">Communities Across the Carolinas</dt>
+              <dd class="stats-section__value">12</dd>
+            </div>
+            <div class="stats-section__item">
+              <dt class="stats-section__label">Homeowner Satisfaction</dt>
+              <dd class="stats-section__value">97%</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Mapping Table -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind UI → Design System Mapping</h3>
+    <div style="overflow-x:auto; margin-bottom: var(--space-8);">
+      <table class="layout-mapping">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Original (Tailwind UI)</th>
+            <th>Design System</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section background</td>
+            <td><code class="old">bg-gray-900</code></td>
+            <td><code class="new">bg-surface</code></td>
+            <td>Light mode — white surface</td>
+          </tr>
+          <tr>
+            <td>Stat value</td>
+            <td><code class="old">text-3xl font-semibold tracking-tight text-white sm:text-5xl</code></td>
+            <td><code class="new">text-h3 font-display font-thin text-dark sm:text-h2</code></td>
+            <td>Larken display font for dramatic stat numbers</td>
+          </tr>
+          <tr>
+            <td>Stat label</td>
+            <td><code class="old">text-base/7 text-gray-400</code></td>
+            <td><code class="new">text-body-sm font-body font-book text-body</code></td>
+            <td>Body color (#6B7280) for readable labels on white</td>
+          </tr>
+          <tr>
+            <td>Container</td>
+            <td><code class="old">max-w-7xl px-6 lg:px-8</code></td>
+            <td><code class="new">max-w-site px-6 lg:px-8</code></td>
+            <td>max-w-site = 1280px</td>
+          </tr>
+          <tr>
+            <td>Grid</td>
+            <td><code class="old">grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3</code></td>
+            <td><code class="new">grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-3</code></td>
+            <td>Unchanged — spacing maps 1:1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tailwind Equivalent Code -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind-First Implementation</h3>
+    <p class="body-sm" style="margin-bottom: var(--space-4);">When building with Tailwind utilities in PHP components, the markup looks like this:</p>
+    <div class="layout-code">
+<pre><span class="cmt">&lt;!-- Stats Section — Light (Tailwind-first, design system tokens) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"bg-surface py-24 sm:py-24"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto max-w-site px-6 lg:px-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;dl</span> <span class="attr">class=</span><span class="val">"grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"</span><span class="tag">&gt;</span>
+
+      <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto flex max-w-xs flex-col gap-y-4"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;dt</span> <span class="attr">class=</span><span class="val">"text-body-sm font-body font-book text-body"</span><span class="tag">&gt;</span>
+          Homes Built Since 2004
+        <span class="tag">&lt;/dt&gt;</span>
+        <span class="tag">&lt;dd</span> <span class="attr">class=</span><span class="val">"order-first text-h3-mobile font-display font-thin
+                text-dark sm:text-h3"</span><span class="tag">&gt;</span>
+          2,500+
+        <span class="tag">&lt;/dd&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;/dl&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================ -->
+  <!-- BENTO GRID -->
+  <!-- ============================================================ -->
+  <section class="layout-section">
+    <p class="layout-section-title">Section Layout</p>
+    <h2>Bento Grid</h2>
+    <p class="layout-section-desc">An asymmetric card grid with two tall side cards and two stacked center cards. Adapted from Tailwind UI's "Bento Grid" pattern — white cards on a subtle alt surface with extra-rounded outer edges. Image areas shown as placeholders.</p>
+
+    <!-- Live Preview -->
+    <div class="layout-preview">
+      <div class="bento-section">
+        <div class="bento-section__container">
+          <p class="bento-section__eyebrow">Explore Our Homes</p>
+          <h2 class="bento-section__title">Everything you need to find your perfect home</h2>
+
+          <div class="bento-section__grid">
+
+            <!-- Card 1: Left tall -->
+            <div class="bento-card bento-card--left">
+              <div class="bento-card__bg"></div>
+              <div class="bento-card__inner">
+                <div class="bento-card__content">
+                  <p class="bento-card__title">Mobile-First Experience</p>
+                  <p class="bento-card__desc">Browse floor plans, save favorites, and schedule tours right from your phone.</p>
+                </div>
+                <div class="bento-card__visual">
+                  <div class="bento-card__placeholder">
+                    <span class="material-symbols-outlined">smartphone</span>
+                    <span class="bento-card__placeholder-label">Mobile screenshot</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-card__overlay"></div>
+            </div>
+
+            <!-- Card 2: Middle top -->
+            <div class="bento-card bento-card--mid-top">
+              <div class="bento-card__bg"></div>
+              <div class="bento-card__inner">
+                <div class="bento-card__content">
+                  <p class="bento-card__title">Virtual Home Tours</p>
+                  <p class="bento-card__desc">Walk through every home design with immersive 3D tours before you visit in person.</p>
+                </div>
+                <div class="bento-card__visual">
+                  <div class="bento-card__placeholder">
+                    <span class="material-symbols-outlined">view_in_ar</span>
+                    <span class="bento-card__placeholder-label">3D tour preview</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-card__overlay"></div>
+            </div>
+
+            <!-- Card 3: Middle bottom -->
+            <div class="bento-card bento-card--mid-bot">
+              <div class="bento-card__bg"></div>
+              <div class="bento-card__inner">
+                <div class="bento-card__content">
+                  <p class="bento-card__title">Smart Home Ready</p>
+                  <p class="bento-card__desc">Every home comes pre-wired for smart technology, from thermostats to security systems.</p>
+                </div>
+                <div class="bento-card__visual">
+                  <div class="bento-card__placeholder">
+                    <span class="material-symbols-outlined">sensors</span>
+                    <span class="bento-card__placeholder-label">Smart home graphic</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-card__overlay"></div>
+            </div>
+
+            <!-- Card 4: Right tall -->
+            <div class="bento-card bento-card--right">
+              <div class="bento-card__bg"></div>
+              <div class="bento-card__inner">
+                <div class="bento-card__content">
+                  <p class="bento-card__title">Design Your Home</p>
+                  <p class="bento-card__desc">Choose from hundreds of finishes and features in our design studio to make your home uniquely yours.</p>
+                </div>
+                <div class="bento-card__visual">
+                  <div class="bento-card__placeholder">
+                    <span class="material-symbols-outlined">palette</span>
+                    <span class="bento-card__placeholder-label">Design studio interface</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-card__overlay"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Class Mapping Table -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind UI → Design System Mapping</h3>
+    <div style="overflow-x:auto; margin-bottom: var(--space-8);">
+      <table class="layout-mapping">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Original (Tailwind UI)</th>
+            <th>Design System</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Section background</td>
+            <td><code class="old">bg-gray-50</code></td>
+            <td><code class="new">bg-surface-alt</code></td>
+            <td>#FAFAFA — subtle contrast behind white cards</td>
+          </tr>
+          <tr>
+            <td>Eyebrow text</td>
+            <td><code class="old">text-base/7 font-semibold text-indigo-600</code></td>
+            <td><code class="new">text-h4 uppercase tracking-wide-caps text-primary</code></td>
+            <td>H4 subheading pattern in brand primary</td>
+          </tr>
+          <tr>
+            <td>Section heading</td>
+            <td><code class="old">text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl</code></td>
+            <td><code class="new">text-h3 font-display font-thin text-dark sm:text-h2</code></td>
+            <td>Larken display font, text-wrap: balance kept</td>
+          </tr>
+          <tr>
+            <td>Card background</td>
+            <td><code class="old">bg-white</code></td>
+            <td><code class="new">bg-surface</code></td>
+            <td>#FFFFFF — white cards on alt surface</td>
+          </tr>
+          <tr>
+            <td>Card title</td>
+            <td><code class="old">text-lg font-medium tracking-tight text-gray-950</code></td>
+            <td><code class="new">text-lg font-medium text-dark</code></td>
+            <td>font-medium (500), dark text (#35373C)</td>
+          </tr>
+          <tr>
+            <td>Card description</td>
+            <td><code class="old">text-sm/6 text-gray-600</code></td>
+            <td><code class="new">text-body-sm font-book text-body</code></td>
+            <td>Body color (#6B7280)</td>
+          </tr>
+          <tr>
+            <td>Card outline</td>
+            <td><code class="old">outline outline-black/5</code></td>
+            <td><code class="new">border border-border</code></td>
+            <td>#E5E7EB — design system border token</td>
+          </tr>
+          <tr>
+            <td>Outer corner radius</td>
+            <td><code class="old">rounded-4xl</code> (2rem)</td>
+            <td><code class="new">24px</code> (custom)</td>
+            <td>Bento outer edges only — slightly less than original 32px</td>
+          </tr>
+          <tr>
+            <td>Inner corner radius</td>
+            <td><code class="old">rounded-lg</code></td>
+            <td><code class="new">rounded-lg</code></td>
+            <td>12px — standard design system radius</td>
+          </tr>
+          <tr>
+            <td>Container</td>
+            <td><code class="old">max-w-2xl lg:max-w-7xl px-6 lg:px-8</code></td>
+            <td><code class="new">max-w-2xl lg:max-w-site px-6 lg:px-8</code></td>
+            <td>max-w-site = 1280px</td>
+          </tr>
+          <tr>
+            <td>Grid</td>
+            <td><code class="keep">grid gap-4 lg:grid-cols-3 lg:grid-rows-2</code></td>
+            <td><code class="new">grid gap-4 lg:grid-cols-3 lg:grid-rows-2</code></td>
+            <td>Unchanged — gap-4 = 16px</td>
+          </tr>
+          <tr>
+            <td>Images</td>
+            <td><code class="old">&lt;img&gt;</code> (Tailwind Plus assets)</td>
+            <td><code class="new">Placeholder / project images</code></td>
+            <td>Replace with actual screenshots or photography</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key Design Decisions -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Key Design Decisions</h3>
+    <div style="background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-8);">
+      <dl style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Three-layer card structure</dt>
+          <dd class="body-sm">Each card uses a bg layer (white fill), inner layer (clips overflow for images), and overlay layer (shadow + border). This allows images to be clipped to rounded corners while the border renders cleanly above.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Bento corner rounding</dt>
+          <dd class="body-sm">The outer grid edges use 24px radius for the signature bento look, while inner card edges use the standard <code>rounded-lg</code> (12px). On mobile, the top and bottom cards get extra rounding instead of left/right.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Alt surface background</dt>
+          <dd class="body-sm">Unlike other sections that use <code>bg-surface</code> (white), the bento uses <code>bg-surface-alt</code> (#FAFAFA) so the white cards have visible contrast against the background.</dd>
+        </div>
+        <div>
+          <dt style="font-weight:500; color:var(--color-dark); margin-bottom:var(--space-1);">Image placeholders</dt>
+          <dd class="body-sm">The original uses Tailwind Plus screenshot assets. In production, replace placeholders with actual product photography, UI screenshots, or illustrations that match the card's content.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Tailwind Equivalent Code -->
+    <h3 style="font-size:24px; margin-bottom: var(--space-4);">Tailwind-First Implementation</h3>
+    <p class="body-sm" style="margin-bottom: var(--space-4);">When building with Tailwind utilities in PHP components, the markup looks like this:</p>
+    <div class="layout-code">
+<pre><span class="cmt">&lt;!-- Bento Grid — Light (Tailwind-first, design system tokens) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"bg-surface-alt py-24 sm:py-24"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mx-auto max-w-2xl px-6 lg:max-w-site lg:px-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"text-center text-h4 font-body uppercase tracking-wide-caps text-primary"</span><span class="tag">&gt;</span>
+      Explore Our Homes
+    <span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;h2</span> <span class="attr">class=</span><span class="val">"mx-auto mt-2 max-w-2xl text-center text-h3-mobile font-display
+            font-thin text-balance text-dark sm:text-h2"</span><span class="tag">&gt;</span>
+      Everything you need to find your perfect home
+    <span class="tag">&lt;/h2&gt;</span>
+
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2"</span><span class="tag">&gt;</span>
+
+      <span class="cmt">&lt;!-- Left tall card (row-span-2) --&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative lg:row-span-2"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"absolute inset-px rounded-lg bg-surface lg:rounded-l-[24px]"</span><span class="tag">&gt;&lt;/div&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]
+                lg:rounded-l-[25px]"</span><span class="tag">&gt;</span>
+          <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"mt-2 text-lg font-medium text-dark max-lg:text-center"</span><span class="tag">&gt;</span>
+              Mobile-First Experience
+            <span class="tag">&lt;/p&gt;</span>
+            <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"mt-2 max-w-lg text-body-sm font-book text-body max-lg:text-center"</span><span class="tag">&gt;</span>
+              Browse floor plans, save favorites, and schedule tours...
+            <span class="tag">&lt;/p&gt;</span>
+          <span class="tag">&lt;/div&gt;</span>
+          <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative min-h-[30rem] w-full grow max-lg:mx-auto max-lg:max-w-sm"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"mobile-screenshot.png"</span> <span class="attr">class=</span><span class="val">"size-full object-cover object-top"</span> <span class="tag">/&gt;</span>
+          <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"pointer-events-none absolute inset-px rounded-lg border border-border
+                shadow-sm lg:rounded-l-[24px]"</span><span class="tag">&gt;&lt;/div&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+
+      <span class="cmt">&lt;!-- Middle top card --&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative max-lg:row-start-1"</span><span class="tag">&gt;</span>
+        <span class="cmt">&lt;!-- Same 3-layer structure: bg → inner → overlay --&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+
+      <span class="cmt">&lt;!-- Middle bottom card --&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative"</span><span class="tag">&gt;</span>
+        <span class="cmt">&lt;!-- Same 3-layer structure --&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+
+      <span class="cmt">&lt;!-- Right tall card (row-span-2) --&gt;</span>
+      <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"relative lg:row-span-2"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"absolute inset-px rounded-lg bg-surface lg:rounded-r-[24px]"</span><span class="tag">&gt;&lt;/div&gt;</span>
+        <span class="cmt">&lt;!-- inner + overlay with matching rounded-r-[24/25px] --&gt;</span>
+      <span class="tag">&lt;/div&gt;</span>
+
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+
+  </section>
+
+
+</div>
+
+</body>
+</html>

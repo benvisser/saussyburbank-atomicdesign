@@ -560,7 +560,8 @@
     .ds-swatch-color { height: 80px; }
     .ds-swatch-info { padding: var(--space-3); }
     .ds-swatch-info strong { display: block; font-size: 13px; color: var(--color-dark); font-weight: 500; }
-    .ds-swatch-info code { font-size: 12px; color: var(--color-muted); }
+    .ds-swatch-info code { font-size: 11px; color: var(--color-muted); display: block; line-height: 1.5; }
+    .ds-swatch-info code.ds-tw { color: var(--color-primary); font-weight: 500; font-size: 11.5px; }
     .ds-example { background: var(--color-light-bg); border-radius: var(--radius-md); padding: var(--space-6); margin-bottom: var(--space-4); }
     .ds-row { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
     .ds-col { display: flex; flex-direction: column; gap: var(--space-4); }
@@ -597,34 +598,79 @@
     <h2>Colors</h2>
 
     <div class="ds-subsection">
-      <h3>Primary</h3>
+      <h3>Primary Brand</h3>
       <div class="ds-grid ds-grid-4" style="margin-bottom: var(--space-6);">
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#171796;"></div><div class="ds-swatch-info"><strong>Primary</strong><code>#171796</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#0D0D61;"></div><div class="ds-swatch-info"><strong>Primary Hover</strong><code>#0D0D61</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EFEFEF;"></div><div class="ds-swatch-info"><strong>Primary Light</strong><code>#EFEFEF</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#E3E3E3;"></div><div class="ds-swatch-info"><strong>Secondary Hover</strong><code>#E3E3E3</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#171796;"></div><div class="ds-swatch-info"><strong>Primary</strong><code class="ds-tw">bg-primary</code><code>#171796</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#0D0D61;"></div><div class="ds-swatch-info"><strong>Primary Hover</strong><code class="ds-tw">bg-primary-hover</code><code>#0D0D61</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EFEFEF;"></div><div class="ds-swatch-info"><strong>Primary Light</strong><code class="ds-tw">bg-primary-light</code><code>#EFEFEF</code></div></div>
       </div>
+      <div class="ds-grid ds-grid-4">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EFEFEF;"></div><div class="ds-swatch-info"><strong>Secondary</strong><code class="ds-tw">bg-secondary</code><code>#EFEFEF</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#E3E3E3;"></div><div class="ds-swatch-info"><strong>Secondary Hover</strong><code class="ds-tw">bg-secondary-hover</code><code>#E3E3E3</code></div></div>
+      </div>
+      <p class="ds-note">Use with any prefix: <code>bg-</code>, <code>text-</code>, <code>border-</code>, <code>ring-</code> (e.g. <code>text-primary</code>, <code>border-primary-hover</code>)</p>
     </div>
 
     <div class="ds-subsection">
       <h3>Neutrals</h3>
       <div class="ds-grid ds-grid-6">
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#35373C;"></div><div class="ds-swatch-info"><strong>Dark</strong><code>#35373C</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#6B7280;"></div><div class="ds-swatch-info"><strong>Body</strong><code>#6B7280</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#9CA3AF;"></div><div class="ds-swatch-info"><strong>Muted</strong><code>#9CA3AF</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#E5E7EB;"></div><div class="ds-swatch-info"><strong>Border</strong><code>#E5E7EB</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FAFAFA;"></div><div class="ds-swatch-info"><strong>Light BG</strong><code>#FAFAFA</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FFFFFF;"></div><div class="ds-swatch-info"><strong>White</strong><code>#FFFFFF</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#35373C;"></div><div class="ds-swatch-info"><strong>Dark</strong><code class="ds-tw">text-dark</code><code>#35373C</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#6B7280;"></div><div class="ds-swatch-info"><strong>Body</strong><code class="ds-tw">text-body</code><code>#6B7280</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#9CA3AF;"></div><div class="ds-swatch-info"><strong>Muted</strong><code class="ds-tw">text-muted</code><code>#9CA3AF</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#E5E7EB;"></div><div class="ds-swatch-info"><strong>Border</strong><code class="ds-tw">border-border</code><code>#E5E7EB</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FAFAFA;"></div><div class="ds-swatch-info"><strong>Surface Alt</strong><code class="ds-tw">bg-surface-alt</code><code>#FAFAFA</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FFFFFF; border-bottom:1px solid #E5E7EB;"></div><div class="ds-swatch-info"><strong>Surface</strong><code class="ds-tw">bg-surface</code><code>#FFFFFF</code></div></div>
       </div>
     </div>
 
     <div class="ds-subsection">
       <h3>Semantic</h3>
       <div class="ds-grid ds-grid-4">
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#10B981;"></div><div class="ds-swatch-info"><strong>Success</strong><code>#10B981</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#D97706;"></div><div class="ds-swatch-info"><strong>Warning</strong><code>#D97706</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EF4444;"></div><div class="ds-swatch-info"><strong>Error</strong><code>#EF4444</code></div></div>
-        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#2563EB;"></div><div class="ds-swatch-info"><strong>Info</strong><code>#2563EB</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#10B981;"></div><div class="ds-swatch-info"><strong>Success</strong><code class="ds-tw">bg-success</code><code>#10B981</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#D97706;"></div><div class="ds-swatch-info"><strong>Warning</strong><code class="ds-tw">bg-warning</code><code>#D97706</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EF4444;"></div><div class="ds-swatch-info"><strong>Error</strong><code class="ds-tw">bg-error</code><code>#EF4444</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#2563EB;"></div><div class="ds-swatch-info"><strong>Info</strong><code class="ds-tw">bg-info</code><code>#2563EB</code></div></div>
+      </div>
+      <div class="ds-grid ds-grid-4" style="margin-top: var(--space-4);">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#34C092;"></div><div class="ds-swatch-info"><strong>Success Light</strong><code class="ds-tw">bg-success-light</code><code>#34C092</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#F59E0B;"></div><div class="ds-swatch-info"><strong>Warning Light</strong><code class="ds-tw">bg-warning-light</code><code>#F59E0B</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FEF2F2;"></div><div class="ds-swatch-info"><strong>Error Light</strong><code class="ds-tw">bg-error-light</code><code>#FEF2F2</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EFF6FF;"></div><div class="ds-swatch-info"><strong>Info Light</strong><code class="ds-tw">bg-info-light</code><code>#EFF6FF</code></div></div>
+      </div>
+      <div class="ds-grid ds-grid-4" style="margin-top: var(--space-4);">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#D1FAE5;"></div><div class="ds-swatch-info"><strong>Success BG</strong><code class="ds-tw">bg-success-bg</code><code>#D1FAE5</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FEF3C7;"></div><div class="ds-swatch-info"><strong>Warning BG</strong><code class="ds-tw">bg-warning-bg</code><code>#FEF3C7</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FEE2E2;"></div><div class="ds-swatch-info"><strong>Error BG</strong><code class="ds-tw">bg-error-bg</code><code>#FEE2E2</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#EFF6FF;"></div><div class="ds-swatch-info"><strong>Info BG</strong><code class="ds-tw">bg-info-bg</code><code>#EFF6FF</code></div></div>
+      </div>
+      <div class="ds-grid ds-grid-4" style="margin-top: var(--space-4);">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#065F46;"></div><div class="ds-swatch-info"><strong>Success Text</strong><code class="ds-tw">text-success-text</code><code>#065F46</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#92400E;"></div><div class="ds-swatch-info"><strong>Warning Text</strong><code class="ds-tw">text-warning-text</code><code>#92400E</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#991B1B;"></div><div class="ds-swatch-info"><strong>Error Text</strong><code class="ds-tw">text-error-text</code><code>#991B1B</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#1E40AF;"></div><div class="ds-swatch-info"><strong>Info Text</strong><code class="ds-tw">text-info-text</code><code>#1E40AF</code></div></div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Surfaces</h3>
+      <div class="ds-grid ds-grid-4">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FFFFFF; border-bottom:1px solid #E5E7EB;"></div><div class="ds-swatch-info"><strong>Surface</strong><code class="ds-tw">bg-surface</code><code>#FFFFFF</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#FAFAFA;"></div><div class="ds-swatch-info"><strong>Surface Alt</strong><code class="ds-tw">bg-surface-alt</code><code>#FAFAFA</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#35373C;"></div><div class="ds-swatch-info"><strong>Surface Dark</strong><code class="ds-tw">bg-surface-dark</code><code>#35373C</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:rgba(0,0,0,0.5);"></div><div class="ds-swatch-info"><strong>Overlay</strong><code class="ds-tw">bg-overlay</code><code>rgba(0,0,0,0.5)</code></div></div>
+      </div>
+      <p class="ds-note">Dark surface text uses <code>text-surface-dark-text</code> (#F9FAFB) for readable contrast on <code>bg-surface-dark</code>.</p>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Interactive</h3>
+      <div class="ds-grid ds-grid-6">
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#171796;"></div><div class="ds-swatch-info"><strong>Focus</strong><code class="ds-tw">ring-focus</code><code>#171796</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#E5E7EB;"></div><div class="ds-swatch-info"><strong>Disabled</strong><code class="ds-tw">bg-disabled</code><code>#E5E7EB</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#9CA3AF;"></div><div class="ds-swatch-info"><strong>Disabled Text</strong><code class="ds-tw">text-disabled-text</code><code>#9CA3AF</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#171796;"></div><div class="ds-swatch-info"><strong>Link</strong><code class="ds-tw">text-link</code><code>#171796</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#0D0D61;"></div><div class="ds-swatch-info"><strong>Link Hover</strong><code class="ds-tw">text-link-hover</code><code>#0D0D61</code></div></div>
+        <div class="ds-swatch"><div class="ds-swatch-color" style="background:#5B4A6B;"></div><div class="ds-swatch-info"><strong>Link Visited</strong><code class="ds-tw">text-link-visited</code><code>#5B4A6B</code></div></div>
       </div>
     </div>
   </section>
@@ -636,17 +682,259 @@
     <p class="ds-section-title">Atoms</p>
     <h2>Typography</h2>
 
-    <div class="ds-example">
-      <h1 style="margin-bottom:24px;">H1 — Larken 80px</h1>
-      <h2 style="margin-bottom:20px;">H2 — Larken 64px</h2>
-      <h3 style="margin-bottom:16px;">H3 — Larken 45px</h3>
-      <h4 style="margin-bottom:20px;">H4 — Proxima Nova 14px Uppercase</h4>
-      <p class="body-lg" style="margin-bottom:12px;">Body Large — Proxima Nova 18px / 168% line-height. Used for lead paragraphs and prominent body copy.</p>
-      <p class="body-sm" style="margin-bottom:12px;">Body Small — Proxima Nova 14px / 174% line-height. The default body text style for most content across the site.</p>
-      <p class="caption">Caption — Proxima Nova 12px / 160%. Metadata, footnotes, and supporting details.</p>
+    <div class="ds-subsection">
+      <h3>Type Scale</h3>
+      <div class="ds-example">
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <h1 style="margin:0; flex:1; min-width:200px;">H1 Heading</h1>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-h1 font-display font-thin</code>
+              <code style="font-size:12px; color:var(--color-muted);">80px / 102% line-height</code>
+            </div>
+          </div>
+          <hr style="margin:0;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <h2 style="margin:0; flex:1; min-width:200px;">H2 Heading</h2>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-h2 font-display font-thin</code>
+              <code style="font-size:12px; color:var(--color-muted);">64px / 110% line-height</code>
+            </div>
+          </div>
+          <hr style="margin:0;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <h3 style="margin:0; flex:1; min-width:200px;">H3 Heading</h3>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-h3 font-display font-thin</code>
+              <code style="font-size:12px; color:var(--color-muted);">45px / 110% line-height</code>
+            </div>
+          </div>
+          <hr style="margin:0;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <h4 style="margin:0; flex:1; min-width:200px;">H4 Subheading</h4>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-h4 font-body uppercase tracking-wide-caps</code>
+              <code style="font-size:12px; color:var(--color-muted);">14px / normal / 0.08em spacing</code>
+            </div>
+          </div>
+          <hr style="margin:0;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <p class="body-lg" style="margin:0; flex:1; min-width:200px;">Body Large text for lead paragraphs and prominent copy.</p>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-body-lg font-body font-book</code>
+              <code style="font-size:12px; color:var(--color-muted);">18px / 168% line-height</code>
+            </div>
+          </div>
+          <hr style="margin:0;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <p class="body-sm" style="margin:0; flex:1; min-width:200px;">Body Small — the default text style used across most content on the site.</p>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-body-sm font-body font-book</code>
+              <code style="font-size:12px; color:var(--color-muted);">14px / 174% line-height</code>
+            </div>
+          </div>
+          <hr style="margin:0;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <p class="caption" style="margin:0; flex:1; min-width:200px;">Caption text for metadata, footnotes, and supporting details.</p>
+            <div style="min-width:260px;">
+              <code class="ds-tw" style="display:block;">text-caption font-body font-book text-muted</code>
+              <code style="font-size:12px; color:var(--color-muted);">12px / 160% line-height</code>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <p class="ds-note">Note: Larken and Proxima Nova are loaded via Adobe Fonts (Typekit kit qnw7qtb). Fallbacks: Georgia for Larken, Helvetica Neue for Proxima Nova.</p>
+    <div class="ds-subsection">
+      <h3>Responsive Sizes</h3>
+      <div class="ds-example" style="overflow-x:auto;">
+        <table style="font-size:13px; width:100%;">
+          <thead>
+            <tr>
+              <th>Element</th>
+              <th>Mobile (<768px)</th>
+              <th>Desktop</th>
+              <th>Tailwind Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>H1</td><td>48px</td><td>80px</td><td><code class="ds-tw">text-h1-mobile md:text-h1</code></td></tr>
+            <tr><td>H2</td><td>40px</td><td>64px</td><td><code class="ds-tw">text-h2-mobile md:text-h2</code></td></tr>
+            <tr><td>H3</td><td>30px</td><td>45px</td><td><code class="ds-tw">text-h3-mobile md:text-h3</code></td></tr>
+            <tr><td>H4</td><td colspan="2">14px (no change)</td><td><code class="ds-tw">text-h4</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Font Families</h3>
+      <div class="ds-example">
+        <div class="ds-grid ds-grid-2">
+          <div>
+            <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:12px;">
+              <h4 style="margin:0;">Display — Larken</h4>
+              <code class="ds-tw">font-display</code>
+            </div>
+            <p style="font-family:var(--font-display); font-size:32px; font-weight:100; line-height:130%; color:var(--color-dark);">The quick brown fox jumps over the lazy dog</p>
+            <p class="caption" style="margin-top:8px;">larken, Georgia, Times New Roman, serif</p>
+          </div>
+          <div>
+            <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:12px;">
+              <h4 style="margin:0;">Body — Proxima Nova</h4>
+              <code class="ds-tw">font-body</code>
+            </div>
+            <p style="font-family:var(--font-body); font-size:18px; font-weight:325; line-height:168%; color:var(--color-body);">The quick brown fox jumps over the lazy dog</p>
+            <p class="caption" style="margin-top:8px;">proxima-nova, Helvetica Neue, Arial, sans-serif</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Font Weights</h3>
+      <div class="ds-example">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <p style="font-family:var(--font-body); font-size:18px; font-weight:100; color:var(--color-dark); margin:0; flex:1; min-width:200px;">Thin (100) — Display headings</p>
+            <code class="ds-tw">font-thin</code>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <p style="font-family:var(--font-body); font-size:18px; font-weight:325; color:var(--color-dark); margin:0; flex:1; min-width:200px;">Book (325) — Default body weight</p>
+            <code class="ds-tw">font-book</code>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+            <p style="font-family:var(--font-body); font-size:18px; font-weight:500; color:var(--color-dark); margin:0; flex:1; min-width:200px;">Medium (500) — Labels, buttons, emphasis</p>
+            <code class="ds-tw">font-medium</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Letter Spacing</h3>
+      <div class="ds-example">
+        <div style="display:flex; align-items:baseline; gap:16px; flex-wrap:wrap;">
+          <p style="font-family:var(--font-body); font-size:14px; font-weight:325; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-dark); margin:0;">Wide caps — used on H4 subheadings</p>
+          <code class="ds-tw">tracking-wide-caps</code>
+          <code style="font-size:12px; color:var(--color-muted);">0.08em</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Tailwind Default Font Sizes</h3>
+      <p class="body-sm" style="margin-bottom: var(--space-4);">Since the config uses <code>theme.extend</code>, all default Tailwind font-size utilities remain available alongside the custom brand sizes. Below is the full scale with the closest custom equivalents noted.</p>
+      <div class="ds-example" style="overflow-x:auto;">
+        <table style="font-size:13px; width:100%;">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Size</th>
+              <th>Line Height</th>
+              <th>Preview</th>
+              <th>Custom Equivalent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="ds-tw">text-xs</code></td>
+              <td>0.75rem (12px)</td>
+              <td>1rem</td>
+              <td><span style="font-family:var(--font-body); font-size:12px;">The quick brown fox</span></td>
+              <td><code class="ds-tw">≈ text-caption</code></td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-sm</code></td>
+              <td>0.875rem (14px)</td>
+              <td>1.25rem</td>
+              <td><span style="font-family:var(--font-body); font-size:14px;">The quick brown fox</span></td>
+              <td><code class="ds-tw">≈ text-body-sm</code> / <code class="ds-tw">text-h4</code></td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-base</code></td>
+              <td>1rem (16px)</td>
+              <td>1.5rem</td>
+              <td><span style="font-family:var(--font-body); font-size:16px;">The quick brown fox</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-lg</code></td>
+              <td>1.125rem (18px)</td>
+              <td>1.75rem</td>
+              <td><span style="font-family:var(--font-body); font-size:18px;">The quick brown fox</span></td>
+              <td><code class="ds-tw">≈ text-body-lg</code></td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-xl</code></td>
+              <td>1.25rem (20px)</td>
+              <td>1.75rem</td>
+              <td><span style="font-family:var(--font-body); font-size:20px;">The quick brown fox</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-2xl</code></td>
+              <td>1.5rem (24px)</td>
+              <td>2rem</td>
+              <td><span style="font-family:var(--font-body); font-size:24px;">The quick brown fox</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-3xl</code></td>
+              <td>1.875rem (30px)</td>
+              <td>2.25rem</td>
+              <td><span style="font-family:var(--font-body); font-size:30px;">The quick brown fox</span></td>
+              <td><code class="ds-tw">≈ text-h3-mobile</code></td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-4xl</code></td>
+              <td>2.25rem (36px)</td>
+              <td>2.5rem</td>
+              <td><span style="font-family:var(--font-body); font-size:36px;">Quick brown fox</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-5xl</code></td>
+              <td>3rem (48px)</td>
+              <td>1</td>
+              <td><span style="font-family:var(--font-body); font-size:48px;">Quick brown</span></td>
+              <td><code class="ds-tw">≈ text-h1-mobile</code></td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-6xl</code></td>
+              <td>3.75rem (60px)</td>
+              <td>1</td>
+              <td><span style="font-family:var(--font-body); font-size:60px;">Quick</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-7xl</code></td>
+              <td>4.5rem (72px)</td>
+              <td>1</td>
+              <td><span style="font-family:var(--font-body); font-size:72px;">Quick</span></td>
+              <td><code class="ds-tw">≈ text-h1</code></td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-8xl</code></td>
+              <td>6rem (96px)</td>
+              <td>1</td>
+              <td><span style="font-family:var(--font-body); font-size:96px;">Aa</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><code class="ds-tw">text-9xl</code></td>
+              <td>8rem (128px)</td>
+              <td>1</td>
+              <td><span style="font-family:var(--font-body); font-size:128px;">Aa</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="ds-note">Prefer custom sizes (<code>text-h1</code>, <code>text-body-lg</code>, etc.) for brand consistency. Tailwind defaults are useful for one-off sizes not covered by the brand scale. Custom sizes include their own line-height and font-weight; defaults do not.</p>
+    </div>
+
+    <p class="ds-note">Larken and Proxima Nova are loaded via Adobe Fonts (Typekit kit <code>qnw7qtb</code>). All type scale tokens are defined in <code>tailwind.config.js → theme.extend.fontSize</code>.</p>
   </section>
 
   <!-- ============================================================ -->
@@ -659,15 +947,11 @@
     <div class="ds-subsection">
       <h3>Variants</h3>
       <div class="ds-example">
-        <div class="ds-row" style="margin-bottom: var(--space-6);">
+        <div class="ds-row">
           <button class="btn btn-primary btn-md">Primary</button>
           <button class="btn btn-secondary btn-md">Secondary</button>
           <button class="btn btn-outline btn-md">Outlined</button>
           <button class="btn btn-text btn-md">Text Link</button>
-        </div>
-        <div class="ds-row">
-          <button class="btn btn-primary btn-md" disabled>Disabled</button>
-          <button class="btn btn-outline btn-md" disabled>Disabled</button>
         </div>
       </div>
     </div>
@@ -675,10 +959,46 @@
     <div class="ds-subsection">
       <h3>Sizes</h3>
       <div class="ds-example">
+        <div class="ds-col" style="gap: var(--space-6);">
+          <div>
+            <h4 style="margin-bottom:12px;">Small (btn-sm)</h4>
+            <div class="ds-row">
+              <button class="btn btn-primary btn-sm">Primary</button>
+              <button class="btn btn-secondary btn-sm">Secondary</button>
+              <button class="btn btn-outline btn-sm">Outlined</button>
+              <button class="btn btn-text btn-sm">Text Link</button>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:12px;">Medium (btn-md) — Default</h4>
+            <div class="ds-row">
+              <button class="btn btn-primary btn-md">Primary</button>
+              <button class="btn btn-secondary btn-md">Secondary</button>
+              <button class="btn btn-outline btn-md">Outlined</button>
+              <button class="btn btn-text btn-md">Text Link</button>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:12px;">Large (btn-lg)</h4>
+            <div class="ds-row">
+              <button class="btn btn-primary btn-lg">Primary</button>
+              <button class="btn btn-secondary btn-lg">Secondary</button>
+              <button class="btn btn-outline btn-lg">Outlined</button>
+              <button class="btn btn-text btn-lg">Text Link</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Disabled States</h3>
+      <div class="ds-example">
         <div class="ds-row">
-          <button class="btn btn-primary btn-sm">Small</button>
-          <button class="btn btn-primary btn-md">Medium</button>
-          <button class="btn btn-primary btn-lg">Large</button>
+          <button class="btn btn-primary btn-md" disabled>Primary Disabled</button>
+          <button class="btn btn-secondary btn-md" disabled>Secondary Disabled</button>
+          <button class="btn btn-outline btn-md" disabled>Outlined Disabled</button>
+          <button class="btn btn-text btn-md" disabled>Text Disabled</button>
         </div>
       </div>
     </div>
@@ -686,21 +1006,72 @@
     <div class="ds-subsection">
       <h3>With Icons</h3>
       <div class="ds-example">
-        <div class="ds-row">
-          <button class="btn btn-primary btn-md">
-            <span class="material-symbols-outlined icon-sm">arrow_forward</span>
-            Get Started
-          </button>
-          <button class="btn btn-outline btn-md">
-            <span class="material-symbols-outlined icon-sm">schedule</span>
-            Schedule Tour
-          </button>
-          <button class="btn btn-secondary btn-md">
-            Download
-            <span class="material-symbols-outlined icon-sm">download</span>
-          </button>
+        <div class="ds-col" style="gap: var(--space-6);">
+          <div>
+            <h4 style="margin-bottom:12px;">Icon Before (default)</h4>
+            <div class="ds-row">
+              <button class="btn btn-primary btn-md">
+                <span class="material-symbols-outlined icon-sm">arrow_forward</span>
+                Get Started
+              </button>
+              <button class="btn btn-outline btn-md">
+                <span class="material-symbols-outlined icon-sm">schedule</span>
+                Schedule Tour
+              </button>
+              <button class="btn btn-secondary btn-md">
+                <span class="material-symbols-outlined icon-sm">location_on</span>
+                Find Community
+              </button>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:12px;">Icon After</h4>
+            <div class="ds-row">
+              <button class="btn btn-primary btn-md">
+                Download
+                <span class="material-symbols-outlined icon-sm">download</span>
+              </button>
+              <button class="btn btn-outline btn-md">
+                View Plans
+                <span class="material-symbols-outlined icon-sm">arrow_forward</span>
+              </button>
+              <button class="btn btn-secondary btn-md">
+                Share
+                <span class="material-symbols-outlined icon-sm">share</span>
+              </button>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:12px;">All Sizes with Icons</h4>
+            <div class="ds-row">
+              <button class="btn btn-primary btn-sm">
+                <span class="material-symbols-outlined icon-sm">mail</span>
+                Small
+              </button>
+              <button class="btn btn-primary btn-md">
+                <span class="material-symbols-outlined icon-sm">mail</span>
+                Medium
+              </button>
+              <button class="btn btn-primary btn-lg">
+                <span class="material-symbols-outlined icon-sm">mail</span>
+                Large
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>As Links (&lt;a&gt; tag)</h3>
+      <div class="ds-example">
+        <div class="ds-row">
+          <a href="#" class="btn btn-primary btn-md">Primary Link</a>
+          <a href="#" class="btn btn-secondary btn-md">Secondary Link</a>
+          <a href="#" class="btn btn-outline btn-md">Outlined Link</a>
+        </div>
+      </div>
+      <p class="ds-note">Buttons rendered as <code>&lt;a&gt;</code> tags for navigation. Same visual styles, but semantic anchor behavior.</p>
     </div>
   </section>
 
@@ -745,9 +1116,21 @@
         <p class="form-hint">Optional — up to 500 characters.</p>
       </div>
 
-      <div style="margin-bottom: var(--space-6);">
-        <label for="disabled-input">Disabled Input</label>
-        <input type="text" id="disabled-input" class="form-input" value="Not editable" disabled>
+      <div class="ds-grid ds-grid-3" style="margin-bottom: var(--space-6);">
+        <div>
+          <label for="disabled-input">Disabled Input</label>
+          <input type="text" id="disabled-input" class="form-input" value="Not editable" disabled>
+        </div>
+        <div>
+          <label for="disabled-select">Disabled Select</label>
+          <select id="disabled-select" class="form-select" disabled>
+            <option>Briar Chapel</option>
+          </select>
+        </div>
+        <div>
+          <label for="disabled-textarea">Disabled Textarea</label>
+          <textarea id="disabled-textarea" class="form-textarea" disabled style="min-height:80px;">Not editable</textarea>
+        </div>
       </div>
 
       <div class="ds-row" style="margin-bottom: var(--space-4);">
@@ -823,6 +1206,125 @@
         <span class="badge badge-error">Sold Out</span>
       </div>
     </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CARDS -->
+  <!-- ============================================================ -->
+  <section class="ds-section" id="cards">
+    <p class="ds-section-title">Molecules</p>
+    <h2>Cards</h2>
+
+    <div class="ds-subsection">
+      <h3>Default Card</h3>
+      <div class="ds-grid ds-grid-3">
+        <div class="card">
+          <div style="height:160px; background:var(--color-light-bg); display:flex; align-items:center; justify-content:center;">
+            <span class="material-symbols-outlined" style="font-size:48px; color:var(--color-muted);">image</span>
+          </div>
+          <div class="card-body">
+            <h4 style="margin-bottom:8px;">The Hawthorne</h4>
+            <h3 style="font-size:24px; margin-bottom:8px;">4 Bed / 3 Bath</h3>
+            <p class="body-sm">Open-concept design with a spacious kitchen and covered patio. Starting from the low $400s.</p>
+            <button class="btn btn-primary btn-sm" style="margin-top:16px;">
+              View Floor Plan
+              <span class="material-symbols-outlined icon-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div style="height:160px; background:var(--color-light-bg); display:flex; align-items:center; justify-content:center;">
+            <span class="material-symbols-outlined" style="font-size:48px; color:var(--color-muted);">image</span>
+          </div>
+          <div class="card-body">
+            <h4 style="margin-bottom:8px;">The Magnolia</h4>
+            <h3 style="font-size:24px; margin-bottom:8px;">5 Bed / 4 Bath</h3>
+            <p class="body-sm">Elegant living with a bonus room and three-car garage. Starting from the mid $500s.</p>
+            <button class="btn btn-primary btn-sm" style="margin-top:16px;">
+              View Floor Plan
+              <span class="material-symbols-outlined icon-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+        <div class="card">
+          <div style="height:160px; background:var(--color-light-bg); display:flex; align-items:center; justify-content:center;">
+            <span class="material-symbols-outlined" style="font-size:48px; color:var(--color-muted);">image</span>
+          </div>
+          <div class="card-body">
+            <h4 style="margin-bottom:8px;">The Cypress</h4>
+            <h3 style="font-size:24px; margin-bottom:8px;">3 Bed / 2.5 Bath</h3>
+            <p class="body-sm">Perfect starter home with modern finishes and a cozy backyard. Starting from the low $300s.</p>
+            <button class="btn btn-primary btn-sm" style="margin-top:16px;">
+              View Floor Plan
+              <span class="material-symbols-outlined icon-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Card Without Image</h3>
+      <div class="ds-grid ds-grid-3">
+        <div class="card">
+          <div class="card-body">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary); margin-bottom:12px;">home</span>
+            <h3 style="font-size:24px; margin-bottom:8px;">Find Your Home</h3>
+            <p class="body-sm">Browse our collection of thoughtfully designed floor plans across all communities.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary); margin-bottom:12px;">schedule</span>
+            <h3 style="font-size:24px; margin-bottom:8px;">Schedule a Tour</h3>
+            <p class="body-sm">Visit a model home and experience the craftsmanship and quality first-hand.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary); margin-bottom:12px;">design_services</span>
+            <h3 style="font-size:24px; margin-bottom:8px;">Design Studio</h3>
+            <p class="body-sm">Personalize your finishes and selections with our expert design team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Card with Badge</h3>
+      <div class="ds-grid ds-grid-2">
+        <div class="card">
+          <div class="card-body">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+              <h3 style="font-size:24px;">Briar Chapel</h3>
+              <span class="badge badge-success">Available</span>
+            </div>
+            <p class="body-sm" style="margin-bottom:12px;">Chapel Hill, NC — A master-planned community with 900 acres of preserved open space, trails, and a vibrant town center.</p>
+            <div class="ds-row" style="gap:var(--space-3);">
+              <span class="badge badge-secondary">From $380k</span>
+              <span class="badge badge-secondary">3–5 Beds</span>
+              <span class="badge badge-secondary">1,800–3,500 sqft</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+              <h3 style="font-size:24px;">Wendell Falls</h3>
+              <span class="badge badge-warning">Limited</span>
+            </div>
+            <p class="body-sm" style="margin-bottom:12px;">Wendell, NC — Resort-style amenities with a splash pad, trails, and clubhouse in the heart of Wake County.</p>
+            <div class="ds-row" style="gap:var(--space-3);">
+              <span class="badge badge-secondary">From $420k</span>
+              <span class="badge badge-secondary">3–5 Beds</span>
+              <span class="badge badge-secondary">2,100–3,800 sqft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="ds-note">Cards use <code>.card</code> with <code>.card-body</code> for padded content. Hover state adds a large shadow. Compose cards with other atoms (badges, buttons, icons) for different use cases.</p>
   </section>
 
   <!-- ============================================================ -->
@@ -935,40 +1437,127 @@
 
     <p class="body-sm" style="margin-bottom: var(--space-6);">Using <a href="https://fonts.google.com/icons" target="_blank" rel="noopener">Material Symbols Outlined</a> (filled, weight 400). Apply size classes: <code>.icon-sm</code> (18px), <code>.icon-md</code> (24px), <code>.icon-lg</code> (32px).</p>
 
-    <div class="ds-example">
-      <div class="ds-row" style="gap: var(--space-8);">
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">home</span><br>
-          <span class="caption">home</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">schedule</span><br>
-          <span class="caption">schedule</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">location_on</span><br>
-          <span class="caption">location_on</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">phone</span><br>
-          <span class="caption">phone</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">mail</span><br>
-          <span class="caption">mail</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">favorite</span><br>
-          <span class="caption">favorite</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">arrow_forward</span><br>
-          <span class="caption">arrow_forward</span>
-        </span>
-        <span style="text-align:center;">
-          <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">check_circle</span><br>
-          <span class="caption">check_circle</span>
-        </span>
+    <div class="ds-subsection">
+      <h3>Sizes</h3>
+      <div class="ds-example">
+        <div class="ds-row" style="gap: var(--space-8); align-items: flex-end;">
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-sm" style="color:var(--color-primary);">home</span><br>
+            <span class="caption">sm (18px)</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-md" style="color:var(--color-primary);">home</span><br>
+            <span class="caption">md (24px)</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">home</span><br>
+            <span class="caption">lg (32px)</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Common Icons</h3>
+      <div class="ds-example">
+        <div class="ds-row" style="gap: var(--space-8);">
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">home</span><br>
+            <span class="caption">home</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">schedule</span><br>
+            <span class="caption">schedule</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">location_on</span><br>
+            <span class="caption">location_on</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">phone</span><br>
+            <span class="caption">phone</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">mail</span><br>
+            <span class="caption">mail</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">favorite</span><br>
+            <span class="caption">favorite</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">arrow_forward</span><br>
+            <span class="caption">arrow_forward</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">check_circle</span><br>
+            <span class="caption">check_circle</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Extended Icon Set</h3>
+      <div class="ds-example">
+        <div class="ds-row" style="gap: var(--space-8);">
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">download</span><br>
+            <span class="caption">download</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">share</span><br>
+            <span class="caption">share</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">search</span><br>
+            <span class="caption">search</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">close</span><br>
+            <span class="caption">close</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">menu</span><br>
+            <span class="caption">menu</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">expand_more</span><br>
+            <span class="caption">expand_more</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">design_services</span><br>
+            <span class="caption">design_services</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-primary);">map</span><br>
+            <span class="caption">map</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Semantic Icon Colors</h3>
+      <div class="ds-example">
+        <div class="ds-row" style="gap: var(--space-8);">
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-success);">check_circle</span><br>
+            <span class="caption">Success</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-warning);">warning</span><br>
+            <span class="caption">Warning</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-error);">error</span><br>
+            <span class="caption">Error</span>
+          </span>
+          <span style="text-align:center;">
+            <span class="material-symbols-outlined icon-lg" style="color:var(--color-info);">info</span><br>
+            <span class="caption">Info</span>
+          </span>
+        </div>
       </div>
     </div>
   </section>
@@ -1020,6 +1609,54 @@
           <div style="text-align:center;"><div style="width:100px;height:60px;background:white;border-radius:var(--radius-md);box-shadow:var(--shadow-md);"></div><span class="caption">md</span></div>
           <div style="text-align:center;"><div style="width:100px;height:60px;background:white;border-radius:var(--radius-md);box-shadow:var(--shadow-lg);"></div><span class="caption">lg</span></div>
         </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Focus Rings</h3>
+      <div class="ds-example">
+        <div class="ds-row" style="gap: var(--space-8);">
+          <div style="text-align:center;"><div style="width:100px;height:60px;background:white;border-radius:var(--radius-md);border:1px solid var(--color-border);box-shadow:0 0 0 3px rgba(23,23,150,0.15);"></div><span class="caption">Primary focus</span></div>
+          <div style="text-align:center;"><div style="width:100px;height:60px;background:white;border-radius:var(--radius-md);border:1px solid var(--color-error);box-shadow:0 0 0 3px rgba(239,68,68,0.15);"></div><span class="caption">Error focus</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3>Transitions</h3>
+      <div class="ds-example">
+        <style>
+          .ds-transition-demo {
+            width: 80px;
+            height: 44px;
+            background: var(--color-primary);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .ds-transition-demo span { color: white; font-size: 12px; font-weight: 500; pointer-events: none; }
+          .ds-transition-fast { transition: transform 150ms ease; }
+          .ds-transition-base { transition: transform 250ms ease; }
+          .ds-transition-slow { transition: transform 400ms ease; }
+          .ds-transition-demo:hover { transform: scale(1.15); }
+        </style>
+        <div class="ds-row" style="gap: var(--space-8);">
+          <div style="text-align:center;">
+            <div class="ds-transition-demo ds-transition-fast"><span>Hover</span></div>
+            <span class="caption">fast (150ms)</span>
+          </div>
+          <div style="text-align:center;">
+            <div class="ds-transition-demo ds-transition-base"><span>Hover</span></div>
+            <span class="caption">base (250ms)</span>
+          </div>
+          <div style="text-align:center;">
+            <div class="ds-transition-demo ds-transition-slow"><span>Hover</span></div>
+            <span class="caption">slow (400ms)</span>
+          </div>
+        </div>
+        <p class="ds-note" style="margin-top: var(--space-4);">Hover the boxes above to see the transition speed differences.</p>
       </div>
     </div>
   </section>
